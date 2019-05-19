@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/definitions/userId"
+    },
+    "name": {
+      "type": "string",
+      "faker": "name.findName"
+    },
+    "email": {
+      "type": "string",
+      "faker": "internet.email"
+    },
+    "avatar": {
+      "type": "string",
+      "faker": "image.avatar"
+    },
+    "birthDate": {
+      "type": "date",
+      "faker": "date.past"
+    },
+    "bio": {
+      "type": "string",
+      "faker": "lorem.paragraph"
+    },
+    "type" : {
+      "type": "enum",
+      "enum": [
+        "admin", "user", "moderator"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "email",
+    "avatar",
+    "birthDate",
+    "bio",
+    "type"
+  ],
+  "definitions": {
+    "userId": {
+      "type": "string",
+      "faker": "random.uuid"
+    }
+  }
+}
