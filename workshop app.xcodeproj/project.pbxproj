@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B301EF2F2291ED4D000CEFB4 /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = B301EF2E2291ED4D000CEFB4 /* db.json */; };
+		B301EF312291F4C0000CEFB4 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B301EF302291F4C0000CEFB4 /* schema.json */; };
 		B30CA4872291DDCC00298A2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4862291DDCC00298A2D /* AppDelegate.swift */; };
 		B30CA4892291DDCC00298A2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4882291DDCC00298A2D /* ViewController.swift */; };
 		B30CA48C2291DDCC00298A2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30CA48A2291DDCC00298A2D /* Main.storyboard */; };
@@ -64,6 +66,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B301EF2E2291ED4D000CEFB4 /* db.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = db.json; sourceTree = "<group>"; };
+		B301EF302291F4C0000CEFB4 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		B30CA4832291DDCC00298A2D /* workshop app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "workshop app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B30CA4862291DDCC00298A2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B30CA4882291DDCC00298A2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 		B30CA47A2291DDCC00298A2D = {
 			isa = PBXGroup;
 			children = (
+				B301EF302291F4C0000CEFB4 /* schema.json */,
+				B301EF2E2291ED4D000CEFB4 /* db.json */,
 				B30CA4852291DDCC00298A2D /* workshop app */,
 				B30CA4992291DDCF00298A2D /* workshop app WatchKit App */,
 				B30CA4A82291DDD000298A2D /* workshop app WatchKit Extension */,
@@ -256,7 +262,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B301EF312291F4C0000CEFB4 /* schema.json in Resources */,
 				B30CA4912291DDCF00298A2D /* LaunchScreen.storyboard in Resources */,
+				B301EF2F2291ED4D000CEFB4 /* db.json in Resources */,
 				B30CA48E2291DDCF00298A2D /* Assets.xcassets in Resources */,
 				B30CA48C2291DDCC00298A2D /* Main.storyboard in Resources */,
 			);
