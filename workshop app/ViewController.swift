@@ -16,7 +16,7 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
-    structLabel.text = numbers.first!.description
+    structLabel.text = numbers.first?.description ?? "No First Value"
     
   }
 
