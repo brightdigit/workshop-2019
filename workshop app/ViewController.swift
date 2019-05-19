@@ -9,14 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+  let numbers = [Int]()
   @IBOutlet weak var structLabel : UILabel!
   @IBOutlet weak var classLabel : UILabel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
+    structLabel.text = numbers.first!.description
     
-    debugPrint(classLabel.text)
   }
 
 
