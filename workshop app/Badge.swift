@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Badge.swift
 //  workshop app
 //
 //  Created by Leo Dion on 5/20/19.
@@ -8,9 +8,6 @@
 
 import Foundation
 
-struct User : Codable {
-  let id : UUID
-  let name : String
-  let avatar : URL
-  let badge : Badge
+enum Badge : String, Codable {
+  case new, teacher, guru, `super`
 }

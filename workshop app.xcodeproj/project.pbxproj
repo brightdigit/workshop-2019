@@ -25,6 +25,8 @@
 		B30CA4C02292C8AC00298A2D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4BF2292C8AC00298A2D /* Post.swift */; };
 		B30CA4C22292C8EB00298A2D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4C12292C8EB00298A2D /* Comment.swift */; };
 		B30CA4C42292C9AD00298A2D /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4C32292C9AD00298A2D /* Database.swift */; };
+		B318E29A2292D9E100F64023 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318E2992292D9E100F64023 /* Badge.swift */; };
+		B318E29C2292E2EE00F64023 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318E29B2292E2EE00F64023 /* UserTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		B30CA4BF2292C8AC00298A2D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B30CA4C12292C8EB00298A2D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B30CA4C32292C9AD00298A2D /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		B318E2992292D9E100F64023 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		B318E29B2292E2EE00F64023 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 				B30CA4BF2292C8AC00298A2D /* Post.swift */,
 				B30CA4C12292C8EB00298A2D /* Comment.swift */,
 				B30CA4C32292C9AD00298A2D /* Database.swift */,
+				B318E2992292D9E100F64023 /* Badge.swift */,
+				B318E29B2292E2EE00F64023 /* UserTableViewCell.swift */,
 			);
 			path = "workshop app";
 			sourceTree = "<group>";
@@ -306,9 +312,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B318E29A2292D9E100F64023 /* Badge.swift in Sources */,
 				B30CA4C42292C9AD00298A2D /* Database.swift in Sources */,
 				B30CA4C22292C8EB00298A2D /* Comment.swift in Sources */,
 				B30CA4892291DDCC00298A2D /* ViewController.swift in Sources */,
+				B318E29C2292E2EE00F64023 /* UserTableViewCell.swift in Sources */,
 				B30CA4872291DDCC00298A2D /* AppDelegate.swift in Sources */,
 				B30CA4BE2292C84300298A2D /* User.swift in Sources */,
 				B30CA4C02292C8AC00298A2D /* Post.swift in Sources */,

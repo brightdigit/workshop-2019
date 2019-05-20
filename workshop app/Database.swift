@@ -14,6 +14,15 @@ struct Tables : Codable {
   let comments : [Comment]
 }
 
+struct UserPosts {
+  let user : User
+  let posts : [Post]
+  
+  var latestPost : Post? {
+    return posts.max(by: { $0.date < $1.date})
+  }
+}
+
 class Database {
   static let shared = Database()
   
@@ -31,5 +40,17 @@ class Database {
     let data = try! Data(contentsOf: databaseURL!)
     let tables = try! decoder.decode(Tables.self, from: data)
     self.tables = tables
+  }
+  
+  func users (_ completion: @escaping ([UserPosts]) -> Void) {
+    DispatchQueue.global().async {
+      let postDictionary = Dictionary.init(grouping: self.tables.posts, by: {
+        return $0.userId
+      })
+      let userPosts = self.tables.users.map{
+        UserPosts(user: $0, posts: postDictionary[$0.id] ?? [Post]())
+      }
+      completion(userPosts)
+    }
   }
 }

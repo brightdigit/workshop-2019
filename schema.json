@@ -1,49 +1,72 @@
 {
   "type": "object",
+  "required": [],
   "properties": {
-    "id": {
-      "$ref": "#/definitions/userId"
+    "users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      }
     },
-    "name": {
-      "type": "string",
-      "faker": "name.findName"
+    "posts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        }
+      }
     },
-    "email": {
-      "type": "string",
-      "faker": "internet.email"
-    },
-    "avatar": {
-      "type": "string",
-      "faker": "image.avatar"
-    },
-    "birthDate": {
-      "type": "date",
-      "faker": "date.past"
-    },
-    "bio": {
-      "type": "string",
-      "faker": "lorem.paragraph"
-    },
-    "type" : {
-      "type": "enum",
-      "enum": [
-        "admin", "user", "moderator"
-      ]
-    }
-  },
-  "required": [
-    "id",
-    "name",
-    "email",
-    "avatar",
-    "birthDate",
-    "bio",
-    "type"
-  ],
-  "definitions": {
-    "userId": {
-      "type": "string",
-      "faker": "random.uuid"
+    "comments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "postId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      }
     }
   }
 }
