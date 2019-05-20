@@ -21,6 +21,10 @@
 		B30CA4AA2291DDD000298A2D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4A92291DDD000298A2D /* InterfaceController.swift */; };
 		B30CA4AC2291DDD000298A2D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4AB2291DDD000298A2D /* ExtensionDelegate.swift */; };
 		B30CA4AE2291DDD100298A2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B30CA4AD2291DDD100298A2D /* Assets.xcassets */; };
+		B30CA4BE2292C84300298A2D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4BD2292C84300298A2D /* User.swift */; };
+		B30CA4C02292C8AC00298A2D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4BF2292C8AC00298A2D /* Post.swift */; };
+		B30CA4C22292C8EB00298A2D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4C12292C8EB00298A2D /* Comment.swift */; };
+		B30CA4C42292C9AD00298A2D /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4C32292C9AD00298A2D /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +88,10 @@
 		B30CA4AB2291DDD000298A2D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		B30CA4AD2291DDD100298A2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B30CA4AF2291DDD100298A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B30CA4BD2292C84300298A2D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B30CA4BF2292C8AC00298A2D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B30CA4C12292C8EB00298A2D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		B30CA4C32292C9AD00298A2D /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +143,10 @@
 				B30CA48D2291DDCF00298A2D /* Assets.xcassets */,
 				B30CA48F2291DDCF00298A2D /* LaunchScreen.storyboard */,
 				B30CA4922291DDCF00298A2D /* Info.plist */,
+				B30CA4BD2292C84300298A2D /* User.swift */,
+				B30CA4BF2292C8AC00298A2D /* Post.swift */,
+				B30CA4C12292C8EB00298A2D /* Comment.swift */,
+				B30CA4C32292C9AD00298A2D /* Database.swift */,
 			);
 			path = "workshop app";
 			sourceTree = "<group>";
@@ -294,8 +306,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B30CA4C42292C9AD00298A2D /* Database.swift in Sources */,
+				B30CA4C22292C8EB00298A2D /* Comment.swift in Sources */,
 				B30CA4892291DDCC00298A2D /* ViewController.swift in Sources */,
 				B30CA4872291DDCC00298A2D /* AppDelegate.swift in Sources */,
+				B30CA4BE2292C84300298A2D /* User.swift in Sources */,
+				B30CA4C02292C8AC00298A2D /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
