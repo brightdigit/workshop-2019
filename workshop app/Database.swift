@@ -25,7 +25,7 @@ struct UserPosts {
 
 struct EmbedPost {
   let post : Post
-  let author : User?
+  let author : User!
   let comments : [Comment]
 }
 
@@ -68,7 +68,7 @@ class Database {
       let userDictionary = [UUID : [User]](grouping: self.tables.users, by: { $0.id })
       let posts = self.tables.posts.map{
         return EmbedPost(post: $0, author: userDictionary[$0.userId]?.first, comments: postComments[$0.id] ?? [Comment]())
-      }
+      }.sorted(by: { $0.post.date < $1.post.date })
       completion(posts)
     }
   }

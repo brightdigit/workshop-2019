@@ -11,6 +11,12 @@ import UIKit
 class PostsTableViewController: UITableViewController {
   static let identifer = "post"
   var posts : [EmbedPost]?
+  let dateFormatter : DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .none
+    return formatter
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -42,6 +48,13 @@ class PostsTableViewController: UITableViewController {
       return cell
     }
     
+    cell.postImageView.image = UIImage(url: post.post.image)
+    cell.authorImageView.image = UIImage(url: post.author.avatar)
+    cell.authorNameLabel.text = post.author.name
+    cell.postTitleLabel.text = post.post.title
+    cell.publishDateLabel.text = dateFormatter.string(from: post.post.date)
+    cell.bodyLabel.text = post.post.text
+    cell.commentSummaryLabel.text = "\(post.comments.count) comments"
     
     return cell
   }
