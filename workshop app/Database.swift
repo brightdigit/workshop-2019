@@ -23,6 +23,12 @@ struct UserPosts {
   }
 }
 
+struct EmbedPost {
+  let post : Post
+  let author : User?
+  let comments : [Comment]
+}
+
 class Database {
   static let shared = Database()
   
@@ -51,6 +57,19 @@ class Database {
         UserPosts(user: $0, posts: postDictionary[$0.id] ?? [Post]())
       }
       completion(userPosts)
+    }
+  }
+  
+  func posts (_ completion: @escaping ([EmbedPost]) -> Void) {
+    DispatchQueue.global().async {
+      let postComments = Dictionary.init(grouping: self.tables.comments, by: {
+        return $0.postId
+      })
+      let userDictionary = [UUID : [User]](grouping: self.tables.users, by: { $0.id })
+      let posts = self.tables.posts.map{
+        return EmbedPost(post: $0, author: userDictionary[$0.userId]?.first, comments: postComments[$0.id] ?? [Comment]())
+      }
+      completion(posts)
     }
   }
 }

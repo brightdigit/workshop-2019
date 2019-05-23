@@ -19,7 +19,7 @@ extension UserPosts {
   }
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UsersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   static let identifier = "user"
   @IBOutlet weak var tableView : UITableView!
   var userPosts : [UserPosts]?
@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let dequeueReusableCell = tableView.dequeueReusableCell(withIdentifier: ViewController.identifier, for: indexPath)
+    let dequeueReusableCell = tableView.dequeueReusableCell(withIdentifier: UsersTableViewController.identifier, for: indexPath)
     
     guard let cell = dequeueReusableCell as? UserTableViewCell else {
       return dequeueReusableCell
