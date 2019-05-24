@@ -8,6 +8,32 @@
 
 import UIKit
 
+enum CacheImageType : Int {
+  case post = 1, avatar
+}
+
+class CacheImageKey : NSObject {
+  let uuid : UUID
+  let type : CacheImageType
+  
+  init (type : CacheImageType, uuid: UUID) {
+    self.uuid = uuid
+    self.type = type
+  }
+  
+  override var hash: Int {
+    return uuid.hashValue ^ type.hashValue
+  }
+  
+  override func isEqual(_ object: Any?) -> Bool {
+    guard let other = object as? CacheImageKey else {
+      return false
+    }
+    
+    return self.uuid == other.uuid && self.type == other.type
+  }
+}
+
 class PostsTableViewController: UITableViewController {
   static let identifer = "post"
   var posts : [EmbedPost]?
@@ -17,6 +43,8 @@ class PostsTableViewController: UITableViewController {
     formatter.timeStyle = .none
     return formatter
   }()
+  
+  let cache = NSCache<CacheImageKey, UIImage>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,45 +76,57 @@ class PostsTableViewController: UITableViewController {
       return cell
     }
     
-    cell.postImageView.image = nil
-    cell.authorImageView.image = nil
     
     
-    URLSession.shared.dataTask(with: post.post.image) { (data, _, _) in
-      
-      guard let data = data else {
-        return
-      }
-      
-      guard let image = UIImage(data: data) else {
-        return
-      }
-      
-      DispatchQueue.main.async {
-        guard let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell else {
+    if let image = cache.object(forKey: CacheImageKey(type: .post, uuid: post.post.id)) {
+      cell.postImageView.image = image
+    } else {
+      cell.postImageView.image = nil
+      URLSession.shared.dataTask(with: post.post.image) { (data, _, _) in
+        
+        guard let data = data else {
           return
         }
-        cell.postImageView.image = image
-      }
-    }.resume()
-    
-    URLSession.shared.dataTask(with: post.author.avatar)  { (data, _, _) in
-      
-      guard let data = data else {
-        return
-      }
-      
-      guard let image = UIImage(data: data) else {
-        return
-      }
-      
-      DispatchQueue.main.async {
-        guard let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell else {
+        
+        guard let image = UIImage(data: data) else {
           return
         }
-        cell.authorImageView.image = image
-      }
-    }.resume()
+        self.cache.setObject(image, forKey: CacheImageKey(type: .post, uuid: post.post.id))
+        
+        DispatchQueue.main.async {
+          guard let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell else {
+            return
+          }
+          
+          cell.postImageView.image = image
+        }
+        }.resume()
+    }
+    
+    if let image = cache.object(forKey: CacheImageKey(type: .avatar, uuid: post.author.id)) {
+      cell.authorImageView.image = image
+    } else {
+      cell.authorImageView.image = nil
+      URLSession.shared.dataTask(with: post.author.avatar)  { (data, _, _) in
+        
+        guard let data = data else {
+          return
+        }
+        
+        guard let image = UIImage(data: data) else {
+          return
+        }
+        
+        self.cache.setObject(image, forKey: CacheImageKey(type: .avatar, uuid: post.author.id))
+        
+        DispatchQueue.main.async {
+          guard let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell else {
+            return
+          }
+          cell.authorImageView.image = image
+        }
+        }.resume()
+    }
     cell.authorNameLabel.text = post.author.name
     cell.postTitleLabel.text = post.post.title
     cell.publishDateLabel.text = dateFormatter.string(from: post.post.date)
