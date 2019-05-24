@@ -8,13 +8,16 @@
 
 import UIKit
 
-extension UIImage {
-  convenience init?(url: URL) {
-    
-    guard let imageData = try? Data(contentsOf: url) else {
-      return nil
-    }
-    
-     self.init(data: imageData)
+extension UIImageView {
+  func loadImage(fromURL url : URL) {
+    return URLSession.shared.downloadTask(with: url) { (url, _, _) in
+      DispatchQueue.main.async {
+        guard let path = url?.path else {
+          return
+        }
+        self.image = UIImage(contentsOfFile: path)
+          
+      }
+    }.resume()
   }
 }

@@ -48,8 +48,45 @@ class PostsTableViewController: UITableViewController {
       return cell
     }
     
-    cell.postImageView.image = UIImage(url: post.post.image)
-    cell.authorImageView.image = UIImage(url: post.author.avatar)
+    cell.postImageView.image = nil
+    cell.authorImageView.image = nil
+    
+    
+    URLSession.shared.dataTask(with: post.post.image) { (data, _, _) in
+      
+      guard let data = data else {
+        return
+      }
+      
+      guard let image = UIImage(data: data) else {
+        return
+      }
+      
+      DispatchQueue.main.async {
+        guard let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell else {
+          return
+        }
+        cell.postImageView.image = image
+      }
+    }.resume()
+    
+    URLSession.shared.dataTask(with: post.author.avatar)  { (data, _, _) in
+      
+      guard let data = data else {
+        return
+      }
+      
+      guard let image = UIImage(data: data) else {
+        return
+      }
+      
+      DispatchQueue.main.async {
+        guard let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell else {
+          return
+        }
+        cell.authorImageView.image = image
+      }
+    }.resume()
     cell.authorNameLabel.text = post.author.name
     cell.postTitleLabel.text = post.post.title
     cell.publishDateLabel.text = dateFormatter.string(from: post.post.date)
@@ -58,6 +95,7 @@ class PostsTableViewController: UITableViewController {
     
     return cell
   }
+  
   
   /*
    // Override to support conditional editing of the table view.
