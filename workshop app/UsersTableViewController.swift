@@ -10,7 +10,7 @@ import UIKit
 
 
 
-extension UserPosts {
+extension EmbedUser {
   var postsSummary : String {
     guard let latestPost = self.latestPost else {
       return "0 posts"
@@ -22,7 +22,7 @@ extension UserPosts {
 class UsersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   static let identifier = "user"
   @IBOutlet weak var tableView : UITableView!
-  var userPosts : [UserPosts]?
+  var userPosts : [EmbedUser]?
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return userPosts?.count ?? 0
@@ -31,7 +31,7 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let dequeueReusableCell = tableView.dequeueReusableCell(withIdentifier: UsersTableViewController.identifier, for: indexPath)
     
-    guard let cell = dequeueReusableCell as? UserTableViewCell else {
+    guard let cell = dequeueReusableCell as? UsersTableViewCell else {
       return dequeueReusableCell
     }
     
@@ -43,16 +43,30 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
     cell.badgeLabel.text = "\(user.user.badge)"
     cell.postsSummaryLabel.text = user.postsSummary
     
-    
-    guard let imageData = try? Data(contentsOf: user.user.avatar) else {
-      return cell
+
+    let task = Cache.loadImage(fromURL: user.user.avatar, ofType: .avatar, withUUID: user.user.id) { (image, method) in
+      guard let image = image else {
+        return
+      }
+      
+      if case .cached = method {
+        cell.avatarView.image = image
+        return
+      }
+      
+      
+      DispatchQueue.main.async {
+        guard let cell = tableView.cellForRow(at: indexPath) as? UsersTableViewCell else {
+          return
+        }
+        
+        cell.avatarView.image = image
+      }
     }
     
-    guard let image = UIImage(data: imageData) else {
-      return cell
+    if task != nil {
+      cell.avatarView.image = nil
     }
-    
-    cell.avatarView.image = image
     
     return cell
   }

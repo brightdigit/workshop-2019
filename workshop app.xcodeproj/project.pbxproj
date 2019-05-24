@@ -26,10 +26,12 @@
 		B30CA4C22292C8EB00298A2D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4C12292C8EB00298A2D /* Comment.swift */; };
 		B30CA4C42292C9AD00298A2D /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4C32292C9AD00298A2D /* Database.swift */; };
 		B318E29A2292D9E100F64023 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318E2992292D9E100F64023 /* Badge.swift */; };
-		B318E29C2292E2EE00F64023 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318E29B2292E2EE00F64023 /* UserTableViewCell.swift */; };
+		B318E29C2292E2EE00F64023 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */; };
 		B36240662296C24F00FF192E /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36240652296C24F00FF192E /* PostsTableViewController.swift */; };
-		B36240682296CF1200FF192E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36240672296CF1200FF192E /* PostTableViewCell.swift */; };
-		B362406A2296D0AD00FF192E /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36240692296D0AD00FF192E /* UIImage.swift */; };
+		B36240682296CF1200FF192E /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36240672296CF1200FF192E /* PostsTableViewCell.swift */; };
+		B3A022DD22981ABD00A3A2C6 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */; };
+		B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */; };
+		B3A022E12298243800A3A2C6 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022E02298243800A3A2C6 /* Cache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,10 +100,12 @@
 		B30CA4C12292C8EB00298A2D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B30CA4C32292C9AD00298A2D /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		B318E2992292D9E100F64023 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
-		B318E29B2292E2EE00F64023 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		B36240652296C24F00FF192E /* PostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
-		B36240672296CF1200FF192E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		B36240692296D0AD00FF192E /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		B36240672296CF1200FF192E /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
+		B3A022E02298243800A3A2C6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,20 +152,22 @@
 			isa = PBXGroup;
 			children = (
 				B30CA4862291DDCC00298A2D /* AppDelegate.swift */,
-				B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */,
-				B30CA48A2291DDCC00298A2D /* Main.storyboard */,
 				B30CA48D2291DDCF00298A2D /* Assets.xcassets */,
-				B30CA48F2291DDCF00298A2D /* LaunchScreen.storyboard */,
-				B30CA4922291DDCF00298A2D /* Info.plist */,
-				B30CA4BD2292C84300298A2D /* User.swift */,
-				B30CA4BF2292C8AC00298A2D /* Post.swift */,
-				B30CA4C12292C8EB00298A2D /* Comment.swift */,
-				B30CA4C32292C9AD00298A2D /* Database.swift */,
 				B318E2992292D9E100F64023 /* Badge.swift */,
-				B318E29B2292E2EE00F64023 /* UserTableViewCell.swift */,
+				B30CA4C12292C8EB00298A2D /* Comment.swift */,
+				B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */,
+				B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */,
+				B30CA4C32292C9AD00298A2D /* Database.swift */,
+				B30CA4922291DDCF00298A2D /* Info.plist */,
+				B30CA48F2291DDCF00298A2D /* LaunchScreen.storyboard */,
+				B30CA48A2291DDCC00298A2D /* Main.storyboard */,
+				B30CA4BF2292C8AC00298A2D /* Post.swift */,
+				B36240672296CF1200FF192E /* PostsTableViewCell.swift */,
 				B36240652296C24F00FF192E /* PostsTableViewController.swift */,
-				B36240672296CF1200FF192E /* PostTableViewCell.swift */,
-				B36240692296D0AD00FF192E /* UIImage.swift */,
+				B30CA4BD2292C84300298A2D /* User.swift */,
+				B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */,
+				B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */,
+				B3A022E02298243800A3A2C6 /* Cache.swift */,
 			);
 			path = "workshop app";
 			sourceTree = "<group>";
@@ -322,14 +328,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B318E29A2292D9E100F64023 /* Badge.swift in Sources */,
-				B362406A2296D0AD00FF192E /* UIImage.swift in Sources */,
+				B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */,
 				B30CA4C42292C9AD00298A2D /* Database.swift in Sources */,
 				B30CA4C22292C8EB00298A2D /* Comment.swift in Sources */,
 				B30CA4892291DDCC00298A2D /* UsersTableViewController.swift in Sources */,
 				B36240662296C24F00FF192E /* PostsTableViewController.swift in Sources */,
-				B318E29C2292E2EE00F64023 /* UserTableViewCell.swift in Sources */,
+				B3A022E12298243800A3A2C6 /* Cache.swift in Sources */,
+				B318E29C2292E2EE00F64023 /* UsersTableViewCell.swift in Sources */,
+				B3A022DD22981ABD00A3A2C6 /* CommentsTableViewCell.swift in Sources */,
 				B30CA4872291DDCC00298A2D /* AppDelegate.swift in Sources */,
-				B36240682296CF1200FF192E /* PostTableViewCell.swift in Sources */,
+				B36240682296CF1200FF192E /* PostsTableViewCell.swift in Sources */,
 				B30CA4BE2292C84300298A2D /* User.swift in Sources */,
 				B30CA4C02292C8AC00298A2D /* Post.swift in Sources */,
 			);

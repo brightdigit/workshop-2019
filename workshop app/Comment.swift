@@ -13,4 +13,5 @@ struct Comment : Codable {
   let postId : UUID
   let userId : UUID
   let text : String
+  let date : Date
 }

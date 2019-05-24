@@ -14,7 +14,7 @@ struct Tables : Codable {
   let comments : [Comment]
 }
 
-struct UserPosts {
+struct EmbedUser {
   let user : User
   let posts : [Post]
   
@@ -27,6 +27,12 @@ struct EmbedPost {
   let post : Post
   let author : User!
   let comments : [Comment]
+}
+
+struct EmbedComment {
+  let comment : Comment
+  let post : Post!
+  let author : User!
 }
 
 class Database {
@@ -48,13 +54,13 @@ class Database {
     self.tables = tables
   }
   
-  func users (_ completion: @escaping ([UserPosts]) -> Void) {
+  func users (_ completion: @escaping ([EmbedUser]) -> Void) {
     DispatchQueue.global().async {
       let postDictionary = Dictionary.init(grouping: self.tables.posts, by: {
         return $0.userId
       })
       let userPosts = self.tables.users.map{
-        UserPosts(user: $0, posts: postDictionary[$0.id] ?? [Post]())
+        EmbedUser(user: $0, posts: postDictionary[$0.id] ?? [Post]())
       }
       completion(userPosts)
     }
@@ -70,6 +76,20 @@ class Database {
         return EmbedPost(post: $0, author: userDictionary[$0.userId]?.first, comments: postComments[$0.id] ?? [Comment]())
       }.sorted(by: { $0.post.date > $1.post.date })
       completion(posts)
+    }
+  }
+  
+  
+  func comments (_ completion: @escaping ([EmbedComment]) -> Void) {
+    DispatchQueue.global().async {
+      let postDictionary = Dictionary.init(grouping: self.tables.posts, by: {
+        return $0.id
+      })
+      let userDictionary = [UUID : [User]](grouping: self.tables.users, by: { $0.id })
+      let comments = self.tables.comments.map{
+        return EmbedComment(comment: $0, post: postDictionary[$0.postId]?.first, author: userDictionary[$0.userId]?.first)
+        }.sorted(by: {$0.comment.date > $1.comment.date})
+      completion(comments)
     }
   }
 }
