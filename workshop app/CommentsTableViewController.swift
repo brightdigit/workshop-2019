@@ -173,7 +173,10 @@ class CommentsTableViewController: UITableViewController {
     postView.bodyLabel.text = post.post.text
     postView.postTitleLabel.text = post.post.title
     postView.publishDateLabel.text = WSDateFormatter.default.string(from: post.post.date)
-    postView.commentSummaryLabel.text = "\(post.comments.count) Comments"
+    
+    if let commentSummaryLabel = postView.commentSummaryLabel {
+      commentSummaryLabel.removeFromSuperview()
+    }
     
     _ = Cache.loadImage(fromURL: post.post.image, ofType: .post, withUUID: post.post.id) { (image, method) in
       guard let image = image else {
@@ -208,6 +211,16 @@ class CommentsTableViewController: UITableViewController {
     postView.bodyLabel.sizeToFit()
     postView.autoresizingMask = []
     return postView
+  }
+  
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    guard section == 1 else {
+      return nil
+    }
+    guard let commentCount = post?.comments.count ?? comments?.count else {
+      return nil
+    }
+    return "\(commentCount) Comments"
   }
   
   /*
