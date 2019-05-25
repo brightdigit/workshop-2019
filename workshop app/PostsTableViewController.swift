@@ -76,6 +76,8 @@ class PostsTableViewController: UITableViewController {
         self.tableView.reloadData()
       }
     }
+    
+    
   }
   
   // MARK: - Table view data source
@@ -153,6 +155,23 @@ class PostsTableViewController: UITableViewController {
     return cell
   }
   
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    guard let origin = origin else {
+      return nil
+    }
+    
+    guard let user = self.posts?.first?.author else {
+      return nil
+    }
+    
+    let userView : UserView = .fromNib()
+    
+    return userView
+  }
+  
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 136.0
+  }
   
   
   /*

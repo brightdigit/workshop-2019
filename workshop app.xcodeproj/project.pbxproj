@@ -27,6 +27,8 @@
 		B30CA4C42292C9AD00298A2D /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4C32292C9AD00298A2D /* Database.swift */; };
 		B318E29A2292D9E100F64023 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318E2992292D9E100F64023 /* Badge.swift */; };
 		B318E29C2292E2EE00F64023 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */; };
+		B346C7352298DDD9002ACE07 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B346C7342298DDD8002ACE07 /* UserView.swift */; };
+		B346C7372298DDE5002ACE07 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B346C7362298DDE5002ACE07 /* UserView.xib */; };
 		B36240662296C24F00FF192E /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36240652296C24F00FF192E /* PostsTableViewController.swift */; };
 		B36240682296CF1200FF192E /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36240672296CF1200FF192E /* PostsTableViewCell.swift */; };
 		B3A022DD22981ABD00A3A2C6 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */; };
@@ -101,6 +103,8 @@
 		B30CA4C32292C9AD00298A2D /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		B318E2992292D9E100F64023 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
+		B346C7342298DDD8002ACE07 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		B346C7362298DDE5002ACE07 /* UserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		B36240652296C24F00FF192E /* PostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		B36240672296CF1200FF192E /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 				B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */,
 				B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */,
 				B3A022E02298243800A3A2C6 /* Cache.swift */,
+				B346C7342298DDD8002ACE07 /* UserView.swift */,
+				B346C7362298DDE5002ACE07 /* UserView.xib */,
 			);
 			path = "workshop app";
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				B301EF312291F4C0000CEFB4 /* schema.json in Resources */,
 				B30CA4912291DDCF00298A2D /* LaunchScreen.storyboard in Resources */,
 				B301EF2F2291ED4D000CEFB4 /* db.json in Resources */,
+				B346C7372298DDE5002ACE07 /* UserView.xib in Resources */,
 				B30CA48E2291DDCF00298A2D /* Assets.xcassets in Resources */,
 				B30CA48C2291DDCC00298A2D /* Main.storyboard in Resources */,
 			);
@@ -340,6 +347,7 @@
 				B36240682296CF1200FF192E /* PostsTableViewCell.swift in Sources */,
 				B30CA4BE2292C84300298A2D /* User.swift in Sources */,
 				B30CA4C02292C8AC00298A2D /* Post.swift in Sources */,
+				B346C7352298DDD9002ACE07 /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
