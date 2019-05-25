@@ -69,6 +69,8 @@ class PostsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.tableView.register(UINib(nibName: "PostView", bundle: Bundle.main), forCellReuseIdentifier: "post")
+    self.tableView.estimatedRowHeight = 282
     self.navigationItem.title = self.origin != nil ? "Loading..." : "Posts"
     Database.shared.posts(filteredBy: origin?.filter) { (posts) in
       self.posts = posts
@@ -153,6 +155,7 @@ class PostsTableViewController: UITableViewController {
     cell.postTitleLabel.text = post.post.title
     cell.publishDateLabel.text = WSDateFormatter.default.string(from: post.post.date)
     cell.bodyLabel.text = post.post.text
+    cell.bodyLabel.numberOfLines = 3
     cell.commentSummaryLabel.text = "\(post.comments.count) comments"
     
     return cell
@@ -199,7 +202,10 @@ class PostsTableViewController: UITableViewController {
     return origin != nil ? 136.0 : 0.0
   }
   
-  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    self.performSegue(withIdentifier: "postComments", sender: tableView)
+  }
+
   /*
    // Override to support conditional editing of the table view.
    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

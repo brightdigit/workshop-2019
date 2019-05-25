@@ -245,6 +245,10 @@ class CommentsTableViewController: UITableViewController {
    }
    */
   
+  override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    return post != nil && indexPath.section == 0 ? nil : indexPath
+  }
+  
   // MARK: - Navigation
   
   // In a storyboard-based application, you will often want to do a little preparation before navigation

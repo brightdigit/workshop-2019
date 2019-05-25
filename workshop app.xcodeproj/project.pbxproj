@@ -112,7 +112,6 @@
 		B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		B3A022E02298243800A3A2C6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		B3A022EA22999AC500A3A2C6 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		B3A022EC22999AE400A3A2C6 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
 		B3A022EE2299A34C00A3A2C6 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,7 +178,6 @@
 				B3A022E02298243800A3A2C6 /* Cache.swift */,
 				B346C7342298DDD8002ACE07 /* UserView.swift */,
 				B346C7362298DDE5002ACE07 /* UserView.xib */,
-				B3A022EA22999AC500A3A2C6 /* PostView.swift */,
 				B3A022EC22999AE400A3A2C6 /* PostView.xib */,
 				B3A022EE2299A34C00A3A2C6 /* UIView.swift */,
 			);
