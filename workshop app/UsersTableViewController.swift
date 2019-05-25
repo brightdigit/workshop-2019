@@ -22,10 +22,10 @@ extension EmbedUser {
 class UsersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   static let identifier = "user"
   @IBOutlet weak var tableView : UITableView!
-  var userPosts : [EmbedUser]?
+  var users : [EmbedUser]?
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return userPosts?.count ?? 0
+    return users?.count ?? 0
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,7 +35,7 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
       return dequeueReusableCell
     }
     
-    guard let user = self.userPosts?[indexPath.row] else {
+    guard let user = self.users?[indexPath.row] else {
       return cell
     }
     
@@ -75,10 +75,20 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     Database.shared.users { (userPosts) in
-      self.userPosts = userPosts
+      self.users = userPosts
       DispatchQueue.main.async {
         self.tableView.reloadData()        
       }
+    }
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    guard let indexPath = self.tableView.indexPathForSelectedRow, let user = self.users?[indexPath.row] else {
+      return
+    }
+    if let viewController = segue.destination as? PostsTableViewController {
+      viewController.origin = .author(user.user.id)
     }
   }
 }

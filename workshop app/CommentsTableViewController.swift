@@ -8,16 +8,27 @@
 
 import UIKit
 
+enum CommentsOrigin {
+  case post(UUID), comment(UUID)
+  
+  var filter : CommentFilter {
+    switch self {
+    case .comment(let id): return .postWithComment(id)
+    case .post(let id): return .post(id)
+    }
+  }
+}
+
 class CommentsTableViewController: UITableViewController {
   static let identifer = "comment"
   var comments : [EmbedComment]?
+  var origin : CommentsOrigin?
   weak var alertController : UIAlertController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
-    Database.shared.comments { (comments) in
+    Database.shared.comments(filteredBy: origin?.filter) { (comments) in
       self.comments = comments
       DispatchQueue.main.async {
         self.tableView.reloadData()
@@ -78,11 +89,16 @@ class CommentsTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard self.origin == nil else {
+      self.performSegue(withIdentifier: "Comment Author", sender: tableView)
+      return
+    }
     let alertController = UIAlertController(title: nil, message: "What would you like to see?", preferredStyle: .actionSheet)
     for action in Action.allCases {
-    alertController.addAction(UIAlertAction(title: action.rawValue, style: .default, handler: self.onComment(alertAction:)))
+      alertController.addAction(UIAlertAction(title: action.rawValue, style: .default, handler: self.onComment(alertAction:)))
     }
     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    self.present(alertController, animated: true, completion: nil)
   }
   
   enum Action : String, CaseIterable {
@@ -97,6 +113,7 @@ class CommentsTableViewController: UITableViewController {
       return
     }
     self.performSegue(withIdentifier: action.rawValue, sender: self.alertController)
+    self.alertController = nil
   }
   
   /*
@@ -134,14 +151,20 @@ class CommentsTableViewController: UITableViewController {
    }
    */
   
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
+  // MARK: - Navigation
+  
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // Get the new view controller using segue.destination.
+    // Pass the selected object to the new view controller.
+    guard let indexPath = self.tableView.indexPathForSelectedRow, let comment = self.comments?[indexPath.row] else {
+      return
+    }
+    if let viewController = segue.destination as? CommentsTableViewController {
+      viewController.origin = .comment(comment.comment.id)
+    } else if let viewController = segue.destination as? PostsTableViewController {
+      viewController.origin = .author(comment.author.id)
+    }
+  }
   
 }

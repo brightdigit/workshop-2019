@@ -35,6 +35,10 @@ struct EmbedComment {
   let author : User!
 }
 
+enum CommentFilter {
+  case postWithComment(UUID), post(UUID)
+}
+
 class Database {
   static let shared = Database()
   
@@ -66,13 +70,25 @@ class Database {
     }
   }
   
-  func posts (_ completion: @escaping ([EmbedPost]) -> Void) {
+  func posts (filteredBy filter: PostFilter? = nil ,_ completion: @escaping ([EmbedPost]) -> Void) {
     DispatchQueue.global().async {
       let postComments = Dictionary.init(grouping: self.tables.comments, by: {
         return $0.postId
       })
+      
       let userDictionary = [UUID : [User]](grouping: self.tables.users, by: { $0.id })
-      let posts = self.tables.posts.map{
+      let postDictionary = [UUID : [Post]](grouping: self.tables.posts, by: {
+        return $0.id
+      })
+      let posts = postDictionary.flatMap{ $0.value }.filter({ (post) -> Bool in
+        guard let filter = filter else {
+          return true
+        }
+        switch (filter) {
+        case .author(let userId): return post.userId == userId
+        case .authorWithPost(let postId): return postDictionary[postId]?.map{ $0.userId }.contains(post.userId) ?? false
+        }
+      }).map{
         return EmbedPost(post: $0, author: userDictionary[$0.userId]?.first, comments: postComments[$0.id] ?? [Comment]())
       }.sorted(by: { $0.post.date > $1.post.date })
       completion(posts)
@@ -80,13 +96,26 @@ class Database {
   }
   
   
-  func comments (_ completion: @escaping ([EmbedComment]) -> Void) {
+  func comments (filteredBy filter: CommentFilter? = nil , _ completion: @escaping ([EmbedComment]) -> Void) {
     DispatchQueue.global().async {
       let postDictionary = Dictionary.init(grouping: self.tables.posts, by: {
         return $0.id
       })
       let userDictionary = [UUID : [User]](grouping: self.tables.users, by: { $0.id })
-      let comments = self.tables.comments.map{
+      let commentDictionary = [UUID: [Comment]].init(grouping: self.tables.comments, by: {
+        $0.id
+      })
+      
+      let comments = commentDictionary.flatMap{ return $0.value }.filter({ (comment) -> Bool in
+        guard let filter = filter else {
+          return true
+        }
+        switch (filter) {
+        case .post(let postId): return comment.postId == postId
+        case .postWithComment(let commentId): return commentDictionary[commentId]?.map{ $0.postId }.contains(comment.postId) ?? false
+        }
+        
+      }).map{
         return EmbedComment(comment: $0, post: postDictionary[$0.postId]?.first, author: userDictionary[$0.userId]?.first)
         }.sorted(by: {$0.comment.date > $1.comment.date})
       completion(comments)

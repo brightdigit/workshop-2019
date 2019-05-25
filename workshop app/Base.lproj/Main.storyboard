@@ -115,7 +115,7 @@
                                             <outlet property="badgeLabel" destination="z1f-fy-qlN" id="MhT-GR-j6Z"/>
                                             <outlet property="postsSummaryLabel" destination="z8r-e0-xBL" id="aEw-f6-LRv"/>
                                             <outlet property="usernameLabel" destination="6ZK-lB-7qu" id="rcF-89-zLt"/>
-                                            <segue destination="WX5-Dz-Mgd" kind="show" id="qYM-pb-l6v"/>
+                                            <segue destination="iJN-Sf-Sht" kind="show" id="SuG-dH-wyl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -242,7 +242,7 @@
                                     <outlet property="postImageView" destination="FZy-Bd-EY8" id="8oj-sA-gsk"/>
                                     <outlet property="postTitleLabel" destination="Lrn-9I-2Ud" id="r8m-2L-XGe"/>
                                     <outlet property="publishDateLabel" destination="cbF-E5-mHM" id="eOM-6h-cwZ"/>
-                                    <segue destination="kke-pS-BfJ" kind="show" id="oHt-K7-kBs"/>
+                                    <segue destination="U5u-mc-JUO" kind="show" id="jBG-fN-IsQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -260,7 +260,7 @@
         <!--Root View Controller-->
         <scene sceneID="DJH-cW-ORP">
             <objects>
-                <tableViewController id="U5u-mc-JUO" customClass="CommentsTableViewController" customModule="workshop_app" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PostComments" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U5u-mc-JUO" customClass="CommentsTableViewController" customModule="workshop_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5o5-v7-Afr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -345,49 +345,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="90w-In-AV7"/>
                     <connections>
-                        <segue destination="kke-pS-BfJ" kind="show" identifier="Post" id="t1P-V4-Jbk"/>
-                        <segue destination="WX5-Dz-Mgd" kind="show" identifier="Comment Author" id="han-tS-4uu"/>
+                        <segue destination="hOy-EZ-Y1n" kind="show" identifier="Post" id="eKq-63-ca3"/>
+                        <segue destination="iJN-Sf-Sht" kind="show" identifier="Comment Author" id="MS7-Ne-L1e"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYl-pd-BB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1842" y="-52"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="7Hn-xf-9dg">
+        <!--PostComments-->
+        <scene sceneID="WHX-uA-GIg">
             <objects>
-                <viewController id="kke-pS-BfJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eNt-Wz-3uH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="UlA-8E-fYo"/>
-                    </view>
-                    <connections>
-                        <segue destination="WX5-Dz-Mgd" kind="show" id="YiX-eP-79O"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bIj-ft-rmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder referencedIdentifier="PostComments" id="hOy-EZ-Y1n" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XSL-6f-bOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2823" y="-796"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="YGP-dr-WpN">
-            <objects>
-                <viewController id="WX5-Dz-Mgd" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xMc-Q4-n2e">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Cmw-ZJ-b1y"/>
-                    </view>
-                    <connections>
-                        <segue destination="kke-pS-BfJ" kind="show" id="1uU-OA-XKr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fWh-ua-IT2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2822" y="-1477"/>
+            <point key="canvasLocation" x="2666" y="-52"/>
         </scene>
         <!--Comments-->
         <scene sceneID="JaE-AO-yYt">
@@ -430,7 +402,7 @@
         <image name="User" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="han-tS-4uu"/>
-        <segue reference="t1P-V4-Jbk"/>
+        <segue reference="jBG-fN-IsQ"/>
+        <segue reference="MS7-Ne-L1e"/>
     </inferredMetricsTieBreakers>
 </document>

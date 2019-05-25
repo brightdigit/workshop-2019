@@ -44,16 +44,33 @@ struct WSDateFormatter {
   }()
 }
 
+enum PostsOrigin {
+  case author(UUID), post(UUID)
+  
+  
+  var filter : PostFilter {
+    switch self {
+    case .post(let id): return .authorWithPost(id)
+    case .author(let id): return .author(id)
+    }
+  }
+}
+
+enum PostFilter {
+  case author(UUID), authorWithPost(UUID)
+}
+
 class PostsTableViewController: UITableViewController {
   static let identifer = "post"
   var posts : [EmbedPost]?
   
+  var origin : PostsOrigin?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     
-    Database.shared.posts { (posts) in
+    Database.shared.posts(filteredBy: origin?.filter) { (posts) in
       self.posts = posts
       DispatchQueue.main.async {
         self.tableView.reloadData()
@@ -137,6 +154,7 @@ class PostsTableViewController: UITableViewController {
   }
   
   
+  
   /*
    // Override to support conditional editing of the table view.
    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -172,14 +190,15 @@ class PostsTableViewController: UITableViewController {
    }
    */
   
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
+  // MARK: - Navigation
+  
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // Get the new view controller using segue.destination.
+    // Pass the selected object to the new view controller.
+    if let viewController = segue.destination as? CommentsTableViewController, let indexPath = self.tableView.indexPathForSelectedRow, let postId = self.posts?[indexPath.row].post.id {
+      viewController.origin = .post(postId)
+    }
+  }
   
 }
