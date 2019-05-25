@@ -170,7 +170,7 @@ class PostsTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 136.0
+    return origin != nil ? 136.0 : 0.0
   }
   
   
