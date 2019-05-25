@@ -11,6 +11,7 @@ import UIKit
 class CommentsTableViewController: UITableViewController {
   static let identifer = "comment"
   var comments : [EmbedComment]?
+  weak var alertController : UIAlertController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -74,6 +75,28 @@ class CommentsTableViewController: UITableViewController {
     cell.bodyLabel.text = comment.comment.text
     
     return cell
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let alertController = UIAlertController(title: nil, message: "What would you like to see?", preferredStyle: .actionSheet)
+    for action in Action.allCases {
+    alertController.addAction(UIAlertAction(title: action.rawValue, style: .default, handler: self.onComment(alertAction:)))
+    }
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+  }
+  
+  enum Action : String, CaseIterable {
+    case post = "Post", user = "Comment Author"
+  }
+  
+  func onComment(alertAction: UIAlertAction) {
+    guard let title = alertAction.title else {
+      return
+    }
+    guard let action = Action(rawValue: title) else {
+      return
+    }
+    self.performSegue(withIdentifier: action.rawValue, sender: self.alertController)
   }
   
   /*
