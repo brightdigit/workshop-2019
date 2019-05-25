@@ -66,6 +66,12 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="avatarView" destination="3im-Hk-5Ll" id="bV6-4G-jIP"/>
+                <outlet property="badgeLabel" destination="Vqd-Cr-UUY" id="gR2-dd-AD8"/>
+                <outlet property="summaryLabel" destination="C5d-hl-zU1" id="q8J-l4-LcW"/>
+                <outlet property="usernameLabel" destination="mhz-Jh-8ts" id="PWT-yf-oeZ"/>
+            </connections>
             <point key="canvasLocation" x="405" y="223"/>
         </view>
     </objects>

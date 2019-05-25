@@ -156,7 +156,7 @@ class PostsTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    guard let origin = origin else {
+    guard origin != nil else {
       return nil
     }
     
@@ -165,6 +165,29 @@ class PostsTableViewController: UITableViewController {
     }
     
     let userView : UserView = .fromNib()
+    
+    _ = Cache.loadImage(fromURL: user.avatar, ofType: .avatar, withUUID: user.id) { (image, method) in
+      guard let image = image else {
+        return
+      }
+      
+      if case .cached = method {
+        userView.avatarView.image = image
+        return
+      }
+      
+      DispatchQueue.main.async {
+        userView.avatarView.image = image
+      }
+    }
+    
+    var summaryText = "\(posts?.count ?? 0) posts"
+    if let startDate = posts?.last?.post.date {
+      summaryText.append(" since \(WSDateFormatter.default.string(from: startDate))")
+    }
+    userView.badgeLabel.text = "\(user.badge)"
+    userView.usernameLabel.text = user.name
+    userView.summaryLabel.text = summaryText
     
     return userView
   }

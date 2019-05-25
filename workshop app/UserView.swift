@@ -24,4 +24,8 @@ class UserView: UIView {
     }
     */
 
+  @IBOutlet weak var avatarView: UIImageView!
+  @IBOutlet weak var usernameLabel: UILabel!
+  @IBOutlet weak var badgeLabel : UILabel!
+  @IBOutlet weak var summaryLabel : UILabel!
 }
