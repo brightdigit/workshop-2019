@@ -34,6 +34,8 @@
 		B3A022DD22981ABD00A3A2C6 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */; };
 		B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */; };
 		B3A022E12298243800A3A2C6 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022E02298243800A3A2C6 /* Cache.swift */; };
+		B3A022EF2299A34C00A3A2C6 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022EE2299A34C00A3A2C6 /* UIView.swift */; };
+		B3A022F02299AF2700A3A2C6 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A022EC22999AE400A3A2C6 /* PostView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,9 @@
 		B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		B3A022E02298243800A3A2C6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		B3A022EA22999AC500A3A2C6 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		B3A022EC22999AE400A3A2C6 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
+		B3A022EE2299A34C00A3A2C6 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +179,9 @@
 				B3A022E02298243800A3A2C6 /* Cache.swift */,
 				B346C7342298DDD8002ACE07 /* UserView.swift */,
 				B346C7362298DDE5002ACE07 /* UserView.xib */,
+				B3A022EA22999AC500A3A2C6 /* PostView.swift */,
+				B3A022EC22999AE400A3A2C6 /* PostView.xib */,
+				B3A022EE2299A34C00A3A2C6 /* UIView.swift */,
 			);
 			path = "workshop app";
 			sourceTree = "<group>";
@@ -304,6 +312,7 @@
 				B301EF312291F4C0000CEFB4 /* schema.json in Resources */,
 				B30CA4912291DDCF00298A2D /* LaunchScreen.storyboard in Resources */,
 				B301EF2F2291ED4D000CEFB4 /* db.json in Resources */,
+				B3A022F02299AF2700A3A2C6 /* PostView.xib in Resources */,
 				B346C7372298DDE5002ACE07 /* UserView.xib in Resources */,
 				B30CA48E2291DDCF00298A2D /* Assets.xcassets in Resources */,
 				B30CA48C2291DDCC00298A2D /* Main.storyboard in Resources */,
@@ -334,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3A022EF2299A34C00A3A2C6 /* UIView.swift in Sources */,
 				B318E29A2292D9E100F64023 /* Badge.swift in Sources */,
 				B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */,
 				B30CA4C42292C9AD00298A2D /* Database.swift in Sources */,

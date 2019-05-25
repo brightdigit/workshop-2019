@@ -17,33 +17,68 @@ enum CommentsOrigin {
     case .post(let id): return .post(id)
     }
   }
+  
+  var selection : PostSelection {
+    switch self {
+    case .comment(let id): return .comment(id)
+    case .post(let id): return .post(id)
+    }
+  }
 }
 
 class CommentsTableViewController: UITableViewController {
   static let identifer = "comment"
   var comments : [EmbedComment]?
+  
+  var post: EmbedPost?
   var origin : CommentsOrigin?
   weak var alertController : UIAlertController?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    Database.shared.comments(filteredBy: origin?.filter) { (comments) in
-      self.comments = comments
-      DispatchQueue.main.async {
-        self.tableView.reloadData()
+    self.navigationItem.title = self.origin != nil ? "Loading..." : "Comments"
+    
+    let group = DispatchGroup()
+    
+    group.enter()
+    Database.shared.comments(filteredBy: origin?.filter) {
+      self.comments = $0
+      group.leave()
+    }
+    
+    if let origin = self.origin {
+      
+        self.tableView.register(UINib(nibName: "PostView", bundle: Bundle.main), forCellReuseIdentifier: "post")
+      self.tableView.estimatedSectionHeaderHeight = tableView.frame.width / 3.0 * 2.0 + 300
+      self.tableView.sectionHeaderHeight = UITableView.automaticDimension
+      group.enter()
+      Database.shared.post(selectedBy: origin.selection) {
+        self.post = $0
+        group.leave()
       }
+    }
+    
+    group.notify(queue: .main) {
+      if let title = self.comments?.first?.post.title, self.origin != nil {
+        self.navigationItem.title = title
+      }
+      self.tableView.reloadData()
     }
   }
   
   // MARK: - Table view data source
   
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
-    return comments?.count ?? 0
+  override func numberOfSections(in tableView: UITableView) -> Int {
+    return post != nil ? 2 : 1
   }
   
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // #warning Incomplete implementation, return the number of rows
+    return post != nil && section == 0 ? 1 : comments?.count ?? 0
+  }
+  
+  func tableView(_ tableView: UITableView, commentCellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: CommentsTableViewController.identifer, for: indexPath)
     
     guard let cell = dequeuedCell as? CommentsTableViewCell else {
@@ -88,6 +123,14 @@ class CommentsTableViewController: UITableViewController {
     return cell
   }
   
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if origin != nil && indexPath.section == 0 {
+      return self.tableView(tableView, postCellForRowAt: indexPath)
+    } else {
+      return self.tableView(tableView, commentCellForRowAt: indexPath)
+    }
+  }
+  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard self.origin == nil else {
       self.performSegue(withIdentifier: "Comment Author", sender: tableView)
@@ -114,6 +157,57 @@ class CommentsTableViewController: UITableViewController {
     }
     self.performSegue(withIdentifier: action.rawValue, sender: self.alertController)
     self.alertController = nil
+  }
+  
+  func tableView(_ tableView: UITableView, postCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: "post", for: indexPath)
+    
+    guard let postView = dequeuedCell as? PostsTableViewCell else {
+      return dequeuedCell
+    }
+    
+    guard let post = post else {
+      return postView
+    }
+    postView.authorNameLabel.text = post.author.name
+    postView.bodyLabel.text = post.post.text
+    postView.postTitleLabel.text = post.post.title
+    postView.publishDateLabel.text = WSDateFormatter.default.string(from: post.post.date)
+    postView.commentSummaryLabel.text = "\(post.comments.count) Comments"
+    
+    _ = Cache.loadImage(fromURL: post.post.image, ofType: .post, withUUID: post.post.id) { (image, method) in
+      guard let image = image else {
+        return
+      }
+      
+      if case .cached = method {
+        postView.postImageView.image = image
+        return
+      }
+      
+      DispatchQueue.main.async {
+        postView.postImageView.image = image
+      }
+    }
+    
+    _ = Cache.loadImage(fromURL: post.author.avatar, ofType: .avatar, withUUID: post.author.id) { (image, method) in
+      guard let image = image else {
+        return
+      }
+      
+      if case .cached = method {
+        postView.authorImageView.image = image
+        return
+      }
+      
+      DispatchQueue.main.async {
+        postView.authorImageView.image = image
+      }
+    }
+    postView.bodyLabel.numberOfLines = 0
+    postView.bodyLabel.sizeToFit()
+    postView.autoresizingMask = []
+    return postView
   }
   
   /*

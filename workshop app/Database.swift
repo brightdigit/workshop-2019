@@ -39,6 +39,10 @@ enum CommentFilter {
   case postWithComment(UUID), post(UUID)
 }
 
+enum PostSelection {
+  case post(UUID), comment(UUID)
+}
+
 class Database {
   static let shared = Database()
   
@@ -92,6 +96,34 @@ class Database {
         return EmbedPost(post: $0, author: userDictionary[$0.userId]?.first, comments: postComments[$0.id] ?? [Comment]())
       }.sorted(by: { $0.post.date > $1.post.date })
       completion(posts)
+    }
+  }
+  
+  func post (selectedBy selection: PostSelection, _ completion: @escaping (EmbedPost?) -> Void) {
+    DispatchQueue.global().async {
+      let foundPostId : UUID?
+      switch (selection) {
+      case .comment(let commentId):
+        foundPostId = self.tables.comments.first(where: { $0.id == commentId})?.postId
+      case .post(let id):
+        foundPostId = id
+      }
+      
+      guard let postId = foundPostId else {
+        return completion(nil)
+      }
+      
+      guard let post = self.tables.posts.first(where: {$0.id == postId}) else {
+        return completion(nil)
+      }
+      
+      guard let user = self.tables.users.first(where: {$0.id == post.userId}) else {
+        return completion(nil)
+      }
+      
+      let comments = self.tables.comments.filter({ $0.postId == post.id }).sorted(by: { $0.date > $1.date })
+      
+      completion(EmbedPost(post: post, author: user, comments: comments))
     }
   }
   

@@ -69,10 +69,13 @@ class PostsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
+    self.navigationItem.title = self.origin != nil ? "Loading..." : "Posts"
     Database.shared.posts(filteredBy: origin?.filter) { (posts) in
       self.posts = posts
       DispatchQueue.main.async {
+        if let name = posts.first?.author.name, self.origin != nil {
+          self.navigationItem.title = name
+        }
         self.tableView.reloadData()
       }
     }
