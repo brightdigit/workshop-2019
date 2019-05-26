@@ -69,7 +69,7 @@ class PostsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.tableView.register(UINib(nibName: "PostView", bundle: Bundle.main), forCellReuseIdentifier: "post")
+    self.tableView.register(UINib(nibName: "PostsTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "post")
     self.tableView.estimatedRowHeight = 282
     self.navigationItem.title = self.origin != nil ? "Loading..." : "Posts"
     Database.shared.posts(filteredBy: origin?.filter) { (posts) in
@@ -103,54 +103,23 @@ class PostsTableViewController: UITableViewController {
       return cell
     }
     
-    let task = Cache.loadImage(fromURL: post.post.image, ofType: .post, withUUID: post.post.id) { (image, method) in
-      guard let image = image else {
-        return
-      }
-      
-      if case .cached = method {
-        cell.postImageView.image = image
-        return
-      }
-      
-      
-      DispatchQueue.main.async {
-        guard let cell = tableView.cellForRow(at: indexPath) as? PostsTableViewCell else {
-          return
-        }
-        
-        cell.postImageView.image = image
-      }
-    }
     
-    if task != nil {
+    let postTask = Cache.shared.loadImage(fromURL: post.post.image, ofType: .post, withUUID: post.post.id) { (image, method) in
+      cell.postImageView.image = image
+    }
+      
+    if postTask != nil {
       cell.postImageView.image = nil
     }
     
-    if let image = Cache.shared.object(forKey: CacheImageKey(type: .avatar, uuid: post.author.id)) {
+    let avatarTask = Cache.shared.loadImage(fromURL: post.author.avatar, ofType: .avatar, withUUID: post.author.id) { (image, method) in
       cell.authorImageView.image = image
-    } else {
-      cell.authorImageView.image = nil
-      URLSession.shared.dataTask(with: post.author.avatar)  { (data, _, _) in
-        
-        guard let data = data else {
-          return
-        }
-        
-        guard let image = UIImage(data: data) else {
-          return
-        }
-        
-        Cache.shared.setObject(image, forKey: CacheImageKey(type: .avatar, uuid: post.author.id))
-        
-        DispatchQueue.main.async {
-          guard let cell = tableView.cellForRow(at: indexPath) as? PostsTableViewCell else {
-            return
-          }
-          cell.authorImageView.image = image
-        }
-        }.resume()
     }
+    
+    if avatarTask != nil {
+      cell.authorImageView.image = nil
+    }
+    
     cell.authorNameLabel.text = post.author.name
     cell.postTitleLabel.text = post.post.title
     cell.publishDateLabel.text = WSDateFormatter.default.string(from: post.post.date)
@@ -172,7 +141,7 @@ class PostsTableViewController: UITableViewController {
     
     let userView : UsersTableViewCell = .fromNib()
     
-    _ = Cache.loadImage(fromURL: user.avatar, ofType: .avatar, withUUID: user.id) { (image, method) in
+    _ = Cache.shared.loadImage(fromURL: user.avatar, ofType: .avatar, withUUID: user.id) { (image, method) in
       guard let image = image else {
         return
       }

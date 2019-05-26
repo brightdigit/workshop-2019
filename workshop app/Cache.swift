@@ -13,11 +13,12 @@ enum CacheMethod {
 }
 
 struct Cache {
-  static let shared = NSCache<CacheImageKey, UIImage>()
-
-  static func loadImage(fromURL url : URL, ofType type: CacheImageType, withUUID uuid: UUID, _ completion: @escaping (UIImage?, CacheMethod) -> Void) -> URLSessionDataTask? {
+  static let shared = Cache()
+  let storage = NSCache<CacheImageKey, UIImage>()
+  
+  func loadImage(fromURL url : URL, ofType type: CacheImageType, withUUID uuid: UUID, _ completion: @escaping (UIImage?, CacheMethod) -> Void) -> URLSessionDataTask? {
     let key = CacheImageKey(type: type, uuid: uuid)
-    if let image = Cache.shared.object(forKey: key) {
+    if let image = storage.object(forKey: key) {
       completion(image, .cached)
       
       //cell.postImageView.image = image
@@ -34,17 +35,12 @@ struct Cache {
           completion(nil, .loaded)
           return
         }
-        Cache.shared.setObject(image, forKey: key)
+        self.storage.setObject(image, forKey: key)
         
         DispatchQueue.main.async {
           completion(image, .loaded)
-//          guard let cell = tableView.cellForRow(at: indexPath) as? PostsTableViewCell else {
-//            return
-//          }
-//
-//          cell.postImageView.image = image
         }
-        }
+      }
       task.resume()
       return task
     }

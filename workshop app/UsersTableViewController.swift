@@ -44,7 +44,7 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
     cell.postsSummaryLabel.text = user.postsSummary
     
 
-    let task = Cache.loadImage(fromURL: user.user.avatar, ofType: .avatar, withUUID: user.user.id) { (image, method) in
+    let task = Cache.shared.loadImage(fromURL: user.user.avatar, ofType: .avatar, withUUID: user.user.id) { (image, method) in
       guard let image = image else {
         return
       }

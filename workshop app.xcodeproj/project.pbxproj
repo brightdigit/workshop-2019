@@ -35,7 +35,7 @@
 		B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */; };
 		B3A022E12298243800A3A2C6 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022E02298243800A3A2C6 /* Cache.swift */; };
 		B3A022EF2299A34C00A3A2C6 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022EE2299A34C00A3A2C6 /* UIView.swift */; };
-		B3A022F02299AF2700A3A2C6 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A022EC22999AE400A3A2C6 /* PostView.xib */; };
+		B3A022F02299AF2700A3A2C6 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A022EC22999AE400A3A2C6 /* PostsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +112,7 @@
 		B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		B3A022E02298243800A3A2C6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		B3A022EC22999AE400A3A2C6 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
+		B3A022EC22999AE400A3A2C6 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		B3A022EE2299A34C00A3A2C6 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,8 +162,10 @@
 				B30CA4862291DDCC00298A2D /* AppDelegate.swift */,
 				B30CA48D2291DDCF00298A2D /* Assets.xcassets */,
 				B318E2992292D9E100F64023 /* Badge.swift */,
+				B3A022E02298243800A3A2C6 /* Cache.swift */,
 				B30CA4C12292C8EB00298A2D /* Comment.swift */,
 				B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */,
+				B3860FFB229AB0A1005A85FF /* CommentsTableViewCell.xib */,
 				B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */,
 				B30CA4C32292C9AD00298A2D /* Database.swift */,
 				B30CA4922291DDCF00298A2D /* Info.plist */,
@@ -171,15 +173,13 @@
 				B30CA48A2291DDCC00298A2D /* Main.storyboard */,
 				B30CA4BF2292C8AC00298A2D /* Post.swift */,
 				B36240672296CF1200FF192E /* PostsTableViewCell.swift */,
+				B3A022EC22999AE400A3A2C6 /* PostsTableViewCell.xib */,
 				B36240652296C24F00FF192E /* PostsTableViewController.swift */,
+				B3A022EE2299A34C00A3A2C6 /* UIView.swift */,
 				B30CA4BD2292C84300298A2D /* User.swift */,
 				B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */,
-				B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */,
-				B3A022E02298243800A3A2C6 /* Cache.swift */,
 				B346C7362298DDE5002ACE07 /* UsersTableViewCell.xib */,
-				B3A022EC22999AE400A3A2C6 /* PostView.xib */,
-				B3A022EE2299A34C00A3A2C6 /* UIView.swift */,
-				B3860FFB229AB0A1005A85FF /* CommentsTableViewCell.xib */,
+				B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */,
 			);
 			path = "workshop app";
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 				B30CA4912291DDCF00298A2D /* LaunchScreen.storyboard in Resources */,
 				B301EF2F2291ED4D000CEFB4 /* db.json in Resources */,
 				B3860FFC229AB0A1005A85FF /* CommentsTableViewCell.xib in Resources */,
-				B3A022F02299AF2700A3A2C6 /* PostView.xib in Resources */,
+				B3A022F02299AF2700A3A2C6 /* PostsTableViewCell.xib in Resources */,
 				B346C7372298DDE5002ACE07 /* UsersTableViewCell.xib in Resources */,
 				B30CA48E2291DDCF00298A2D /* Assets.xcassets in Resources */,
 				B30CA48C2291DDCC00298A2D /* Main.storyboard in Resources */,

@@ -49,7 +49,7 @@ class CommentsTableViewController: UITableViewController {
     
     if let origin = self.origin {
       
-      self.tableView.register(UINib(nibName: "PostView", bundle: Bundle.main), forCellReuseIdentifier: "post")
+      self.tableView.register(UINib(nibName: "PostsTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "post")
       self.tableView.estimatedSectionHeaderHeight = tableView.frame.width / 3.0 * 2.0 + 300
       self.tableView.sectionHeaderHeight = UITableView.automaticDimension
       group.enter()
@@ -91,30 +91,7 @@ class CommentsTableViewController: UITableViewController {
     
     
     
-    if let image = Cache.shared.object(forKey: CacheImageKey(type: .avatar, uuid: comment.author.id)) {
-      cell.authorImageView.image = image
-    } else {
-      cell.authorImageView.image = nil
-      URLSession.shared.dataTask(with: comment.author.avatar)  { (data, _, _) in
-        
-        guard let data = data else {
-          return
-        }
-        
-        guard let image = UIImage(data: data) else {
-          return
-        }
-        
-        Cache.shared.setObject(image, forKey: CacheImageKey(type: .avatar, uuid: comment.author.id))
-        
-        DispatchQueue.main.async {
-          guard let cell = tableView.cellForRow(at: indexPath) as? PostsTableViewCell else {
-            return
-          }
-          cell.authorImageView.image = image
-        }
-        }.resume()
-    }
+    
     cell.authorNameLabel.text = comment.author.name
     cell.postTitleLabel.text = comment.post.title
     cell.dateLabel.text = WSDateFormatter.default.string(from: comment.comment.date)
@@ -204,7 +181,7 @@ class CommentsTableViewController: UITableViewController {
       commentSummaryLabel.removeFromSuperview()
     }
     
-    _ = Cache.loadImage(fromURL: post.post.image, ofType: .post, withUUID: post.post.id) { (image, method) in
+    _ = Cache.shared.loadImage(fromURL: post.post.image, ofType: .post, withUUID: post.post.id) { (image, method) in
       guard let image = image else {
         return
       }
@@ -219,7 +196,7 @@ class CommentsTableViewController: UITableViewController {
       }
     }
     
-    _ = Cache.loadImage(fromURL: post.author.avatar, ofType: .avatar, withUUID: post.author.id) { (image, method) in
+    _ = Cache.shared.loadImage(fromURL: post.author.avatar, ofType: .avatar, withUUID: post.author.id) { (image, method) in
       guard let image = image else {
         return
       }
