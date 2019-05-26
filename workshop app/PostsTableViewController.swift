@@ -216,3 +216,10 @@ class PostsTableViewController: UITableViewController {
 
   
 }
+
+extension PostsTableViewController : TabItemable {
+  func configureTabItem(_ tabItem: UITabBarItem) {
+    tabBarItem.title = "Posts"
+    tabBarItem.image = UIImage(named: "Post")
+  }
+}

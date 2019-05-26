@@ -19,16 +19,15 @@ extension EmbedUser {
   }
 }
 
-class UsersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UsersTableViewController: UITableViewController {
   static let identifier = "user"
-  @IBOutlet weak var tableView : UITableView!
   var users : [EmbedUser]?
   
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return users?.count ?? 0
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let dequeueReusableCell = tableView.dequeueReusableCell(withIdentifier: UsersTableViewController.identifier, for: indexPath)
     
     guard let cell = dequeueReusableCell as? UsersTableViewCell else {
@@ -54,7 +53,7 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
     return cell
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let user = self.users?[indexPath.row] else {
       return
     }
@@ -66,6 +65,7 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
+    self.navigationItem.title = "Users"
     self.tableView.register(UINib(nibName: "UsersTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "user")
     Database.shared.users { (userPosts) in
       self.users = userPosts
@@ -74,15 +74,12 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
       }
     }
   }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-    guard let indexPath = self.tableView.indexPathForSelectedRow, let user = self.users?[indexPath.row] else {
-      return
-    }
-    if let viewController = segue.destination as? PostsTableViewController {
-      viewController.origin = .author(user.user.id)
-    }
-  }
 }
 
+
+extension UsersTableViewController : TabItemable {
+  func configureTabItem(_ tabItem: UITabBarItem) {
+    tabBarItem.title = "Users"
+    tabBarItem.image = UIImage(named: "User")
+  }
+}

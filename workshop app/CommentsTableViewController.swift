@@ -274,3 +274,10 @@ class CommentsTableViewController: UITableViewController {
   }
   
 }
+
+extension CommentsTableViewController : TabItemable {
+  func configureTabItem(_ tabItem: UITabBarItem) {
+    tabBarItem.title = "Comments"
+    tabBarItem.image = UIImage(named: "Comment")
+  }
+}
