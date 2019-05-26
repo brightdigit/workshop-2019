@@ -42,26 +42,9 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
     cell.usernameLabel.text = user.user.name
     cell.badgeLabel.text = "\(user.user.badge)"
     cell.postsSummaryLabel.text = user.postsSummary
-    
 
     let task = Cache.shared.loadImage(fromURL: user.user.avatar, ofType: .avatar, withUUID: user.user.id) { (image, method) in
-      guard let image = image else {
-        return
-      }
-      
-      if case .cached = method {
-        cell.avatarView.image = image
-        return
-      }
-      
-      
-      DispatchQueue.main.async {
-        guard let cell = tableView.cellForRow(at: indexPath) as? UsersTableViewCell else {
-          return
-        }
-        
-        cell.avatarView.image = image
-      }
+      cell.avatarView.image = image
     }
     
     if task != nil {

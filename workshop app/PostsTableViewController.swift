@@ -141,19 +141,12 @@ class PostsTableViewController: UITableViewController {
     
     let userView : UsersTableViewCell = .fromNib()
     
-    _ = Cache.shared.loadImage(fromURL: user.avatar, ofType: .avatar, withUUID: user.id) { (image, method) in
-      guard let image = image else {
-        return
-      }
-      
-      if case .cached = method {
-        userView.avatarView.image = image
-        return
-      }
-      
-      DispatchQueue.main.async {
-        userView.avatarView.image = image
-      }
+    let avatarTask = Cache.shared.loadImage(fromURL: user.avatar, ofType: .avatar, withUUID: user.id) { (image, method) in
+      userView.avatarView.image = image
+    }
+    
+    if avatarTask != nil {
+      userView.avatarView.image = nil
     }
     
     var summaryText = "\(posts?.count ?? 0) posts"

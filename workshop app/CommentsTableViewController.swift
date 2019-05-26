@@ -89,8 +89,13 @@ class CommentsTableViewController: UITableViewController {
       return cell
     }
     
+    let avatarTask = Cache.shared.loadImage(fromURL: comment.author.avatar, ofType: .avatar, withUUID: comment.author.id) { (image, method) in
+      cell.authorImageView.image = image
+    }
     
-    
+    if avatarTask != nil {
+      cell.authorImageView.image = nil
+    }
     
     cell.authorNameLabel.text = comment.author.name
     cell.postTitleLabel.text = comment.post.title
@@ -165,55 +170,42 @@ class CommentsTableViewController: UITableViewController {
   func tableView(_ tableView: UITableView, postCellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: "post", for: indexPath)
     
-    guard let postView = dequeuedCell as? PostsTableViewCell else {
+    guard let cell = dequeuedCell as? PostsTableViewCell else {
       return dequeuedCell
     }
     
     guard let post = post else {
-      return postView
+      return cell
     }
-    postView.authorNameLabel.text = post.author.name
-    postView.bodyLabel.text = post.post.text
-    postView.postTitleLabel.text = post.post.title
-    postView.publishDateLabel.text = WSDateFormatter.default.string(from: post.post.date)
+    cell.authorNameLabel.text = post.author.name
+    cell.bodyLabel.text = post.post.text
+    cell.postTitleLabel.text = post.post.title
+    cell.publishDateLabel.text = WSDateFormatter.default.string(from: post.post.date)
     
-    if let commentSummaryLabel = postView.commentSummaryLabel {
+    if let commentSummaryLabel = cell.commentSummaryLabel {
       commentSummaryLabel.removeFromSuperview()
     }
     
-    _ = Cache.shared.loadImage(fromURL: post.post.image, ofType: .post, withUUID: post.post.id) { (image, method) in
-      guard let image = image else {
-        return
-      }
-      
-      if case .cached = method {
-        postView.postImageView.image = image
-        return
-      }
-      
-      DispatchQueue.main.async {
-        postView.postImageView.image = image
-      }
+    let postTask = Cache.shared.loadImage(fromURL: post.post.image, ofType: .post, withUUID: post.post.id) { (image, method) in
+      cell.postImageView.image = image
     }
     
-    _ = Cache.shared.loadImage(fromURL: post.author.avatar, ofType: .avatar, withUUID: post.author.id) { (image, method) in
-      guard let image = image else {
-        return
-      }
-      
-      if case .cached = method {
-        postView.authorImageView.image = image
-        return
-      }
-      
-      DispatchQueue.main.async {
-        postView.authorImageView.image = image
-      }
+    if postTask != nil {
+      cell.postImageView.image = nil
     }
-    postView.bodyLabel.numberOfLines = 0
-    postView.bodyLabel.sizeToFit()
-    postView.autoresizingMask = []
-    return postView
+    
+    let avatarTask = Cache.shared.loadImage(fromURL: post.author.avatar, ofType: .avatar, withUUID: post.author.id) { (image, method) in
+      cell.authorImageView.image = image
+    }
+    
+    if avatarTask != nil {
+      cell.authorImageView.image = nil
+    }
+    
+    cell.bodyLabel.numberOfLines = 0
+    cell.bodyLabel.sizeToFit()
+    cell.autoresizingMask = []
+    return cell
   }
   
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
