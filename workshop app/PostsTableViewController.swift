@@ -9,31 +9,6 @@
 import UIKit
 
 
-enum CacheImageType : Int {
-  case post = 1, avatar
-}
-
-class CacheImageKey : NSObject {
-  let uuid : UUID
-  let type : CacheImageType
-  
-  init (type : CacheImageType, uuid: UUID) {
-    self.uuid = uuid
-    self.type = type
-  }
-  
-  override var hash: Int {
-    return uuid.hashValue ^ type.hashValue
-  }
-  
-  override func isEqual(_ object: Any?) -> Bool {
-    guard let other = object as? CacheImageKey else {
-      return false
-    }
-    
-    return self.uuid == other.uuid && self.type == other.type
-  }
-}
 
 struct WSDateFormatter {
   static let `default` : DateFormatter = {
@@ -44,28 +19,28 @@ struct WSDateFormatter {
   }()
 }
 
-enum PostsOrigin {
-  case author(UUID), post(UUID)
-  
-  
-  var filter : PostFilter {
-    switch self {
-    case .post(let id): return .authorWithPost(id)
-    case .author(let id): return .author(id)
-    }
-  }
-}
-
 enum PostFilter {
   case author(UUID), authorWithPost(UUID)
 }
 
 class PostsTableViewController: UITableViewController {
   static let identifer = "post"
-  var posts : [EmbedPost]?
+  var posts : [PostEmbeded]?
   
-  var origin : PostsOrigin?
+  var origin : Origin?
   
+  enum Origin {
+    case author(UUID), post(UUID)
+    
+    
+    var filter : PostFilter {
+      switch self {
+      case .post(let id): return .authorWithPost(id)
+      case .author(let id): return .author(id)
+      }
+    }
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     

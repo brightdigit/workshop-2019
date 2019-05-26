@@ -10,7 +10,7 @@ import UIKit
 
 
 
-extension EmbedUser {
+extension UserEmbeded {
   var postsSummary : String {
     guard let latestPost = self.latestPost else {
       return "0 posts"
@@ -21,7 +21,7 @@ extension EmbedUser {
 
 class UsersTableViewController: UITableViewController {
   static let identifier = "user"
-  var users : [EmbedUser]?
+  var users : [UserEmbeded]?
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return users?.count ?? 0

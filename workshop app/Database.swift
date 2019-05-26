@@ -14,7 +14,7 @@ struct Tables : Codable {
   let comments : [Comment]
 }
 
-struct EmbedUser {
+struct UserEmbeded {
   let user : User
   let posts : [Post]
   
@@ -23,13 +23,13 @@ struct EmbedUser {
   }
 }
 
-struct EmbedPost {
+struct PostEmbeded {
   let post : Post
   let author : User!
   let comments : [Comment]
 }
 
-struct EmbedComment {
+struct CommentEmbeded {
   let comment : Comment
   let post : Post!
   let author : User!
@@ -62,19 +62,19 @@ class Database {
     self.tables = tables
   }
   
-  func users (_ completion: @escaping ([EmbedUser]) -> Void) {
+  func users (_ completion: @escaping ([UserEmbeded]) -> Void) {
     DispatchQueue.global().async {
       let postDictionary = Dictionary.init(grouping: self.tables.posts, by: {
         return $0.userId
       })
       let userPosts = self.tables.users.map{
-        EmbedUser(user: $0, posts: postDictionary[$0.id] ?? [Post]())
+        UserEmbeded(user: $0, posts: postDictionary[$0.id] ?? [Post]())
       }
       completion(userPosts)
     }
   }
   
-  func posts (filteredBy filter: PostFilter? = nil ,_ completion: @escaping ([EmbedPost]) -> Void) {
+  func posts (filteredBy filter: PostFilter? = nil ,_ completion: @escaping ([PostEmbeded]) -> Void) {
     DispatchQueue.global().async {
       let postComments = Dictionary.init(grouping: self.tables.comments, by: {
         return $0.postId
@@ -93,13 +93,13 @@ class Database {
         case .authorWithPost(let postId): return postDictionary[postId]?.map{ $0.userId }.contains(post.userId) ?? false
         }
       }).map{
-        return EmbedPost(post: $0, author: userDictionary[$0.userId]?.first, comments: postComments[$0.id] ?? [Comment]())
+        return PostEmbeded(post: $0, author: userDictionary[$0.userId]?.first, comments: postComments[$0.id] ?? [Comment]())
       }.sorted(by: { $0.post.date > $1.post.date })
       completion(posts)
     }
   }
   
-  func post (selectedBy selection: PostSelection, _ completion: @escaping (EmbedPost?) -> Void) {
+  func post (selectedBy selection: PostSelection, _ completion: @escaping (PostEmbeded?) -> Void) {
     DispatchQueue.global().async {
       let foundPostId : UUID?
       switch (selection) {
@@ -123,12 +123,12 @@ class Database {
       
       let comments = self.tables.comments.filter({ $0.postId == post.id }).sorted(by: { $0.date > $1.date })
       
-      completion(EmbedPost(post: post, author: user, comments: comments))
+      completion(PostEmbeded(post: post, author: user, comments: comments))
     }
   }
   
   
-  func comments (filteredBy filter: CommentFilter? = nil , _ completion: @escaping ([EmbedComment]) -> Void) {
+  func comments (filteredBy filter: CommentFilter? = nil , _ completion: @escaping ([CommentEmbeded]) -> Void) {
     DispatchQueue.global().async {
       let postDictionary = Dictionary.init(grouping: self.tables.posts, by: {
         return $0.id
@@ -148,7 +148,7 @@ class Database {
         }
         
       }).map{
-        return EmbedComment(comment: $0, post: postDictionary[$0.postId]?.first, author: userDictionary[$0.userId]?.first)
+        return CommentEmbeded(comment: $0, post: postDictionary[$0.postId]?.first, author: userDictionary[$0.userId]?.first)
         }.sorted(by: {$0.comment.date > $1.comment.date})
       completion(comments)
     }

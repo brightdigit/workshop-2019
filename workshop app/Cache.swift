@@ -8,16 +8,43 @@
 
 import UIKit
 
-enum CacheMethod {
-  case cached, loaded
-}
 
 struct Cache {
   static let shared = Cache()
-  let storage = NSCache<CacheImageKey, UIImage>()
+  let storage = NSCache<Key, UIImage>()
   
-  func loadImage(fromURL url : URL, ofType type: CacheImageType, withUUID uuid: UUID, _ completion: @escaping (UIImage?, CacheMethod) -> Void) -> URLSessionDataTask? {
-    let key = CacheImageKey(type: type, uuid: uuid)
+  
+  enum ImageType : Int {
+    case post = 1, avatar
+  }
+  
+  class Key : NSObject {
+    let uuid : UUID
+    let type : ImageType
+    
+    init (type : ImageType, uuid: UUID) {
+      self.uuid = uuid
+      self.type = type
+    }
+    
+    override var hash: Int {
+      return uuid.hashValue ^ type.hashValue
+    }
+    
+    override func isEqual(_ object: Any?) -> Bool {
+      guard let other = object as? Key else {
+        return false
+      }
+      
+      return self.uuid == other.uuid && self.type == other.type
+    }
+  }
+  enum Method {
+    case cached, loaded
+  }
+  
+  func loadImage(fromURL url : URL, ofType type: ImageType, withUUID uuid: UUID, _ completion: @escaping (UIImage?, Method) -> Void) -> URLSessionDataTask? {
+    let key = Key(type: type, uuid: uuid)
     if let image = storage.object(forKey: key) {
       completion(image, .cached)
       

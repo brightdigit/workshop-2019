@@ -8,31 +8,33 @@
 
 import UIKit
 
-enum CommentsOrigin {
-  case post(UUID), comment(UUID)
-  
-  var filter : CommentFilter {
-    switch self {
-    case .comment(let id): return .postWithComment(id)
-    case .post(let id): return .post(id)
-    }
-  }
-  
-  var selection : PostSelection {
-    switch self {
-    case .comment(let id): return .comment(id)
-    case .post(let id): return .post(id)
-    }
-  }
-}
 
 class CommentsTableViewController: UITableViewController {
   static let identifer = "comment"
-  var comments : [EmbedComment]?
+  var comments : [CommentEmbeded]?
   
-  var post: EmbedPost?
-  var origin : CommentsOrigin?
+  var post: PostEmbeded?
+  var origin : Origin?
   weak var alertController : UIAlertController?
+  
+  
+  enum Origin {
+    case post(UUID), comment(UUID)
+    
+    var filter : CommentFilter {
+      switch self {
+      case .comment(let id): return .postWithComment(id)
+      case .post(let id): return .post(id)
+      }
+    }
+    
+    var selection : PostSelection {
+      switch self {
+      case .comment(let id): return .comment(id)
+      case .post(let id): return .post(id)
+      }
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -218,59 +220,9 @@ class CommentsTableViewController: UITableViewController {
     return "\(commentCount) Comments"
   }
   
-  /*
-   // Override to support conditional editing of the table view.
-   override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-   // Return false if you do not want the specified item to be editable.
-   return true
-   }
-   */
-  
-  /*
-   // Override to support editing the table view.
-   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-   if editingStyle == .delete {
-   // Delete the row from the data source
-   tableView.deleteRows(at: [indexPath], with: .fade)
-   } else if editingStyle == .insert {
-   // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-   }    
-   }
-   */
-  
-  /*
-   // Override to support rearranging the table view.
-   override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-   
-   }
-   */
-  
-  /*
-   // Override to support conditional rearranging of the table view.
-   override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-   // Return false if you do not want the item to be re-orderable.
-   return true
-   }
-   */
   
   override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
     return post != nil && indexPath.section == 0 ? nil : indexPath
-  }
-  
-  // MARK: - Navigation
-  
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    // Get the new view controller using segue.destination.
-    // Pass the selected object to the new view controller.
-    guard let indexPath = self.tableView.indexPathForSelectedRow, let comment = self.comments?[indexPath.row] else {
-      return
-    }
-    if let viewController = segue.destination as? CommentsTableViewController {
-      viewController.origin = .comment(comment.comment.id)
-    } else if let viewController = segue.destination as? PostsTableViewController {
-      viewController.origin = .author(comment.author.id)
-    }
   }
   
 }
