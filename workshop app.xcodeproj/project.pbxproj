@@ -49,6 +49,10 @@
 		B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */; };
 		B3A022E12298243800A3A2C6 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022E02298243800A3A2C6 /* Cache.swift */; };
 		B3A022F02299AF2700A3A2C6 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A022EC22999AE400A3A2C6 /* PostsTableViewCell.xib */; };
+		B3A022EF2299A34C00A3A2C6 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022EE2299A34C00A3A2C6 /* UIView.swift */; };
+		B3A022F02299AF2700A3A2C6 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3A022EC22999AE400A3A2C6 /* PostView.xib */; };
+		B3DE576F229B21390078EDCF /* MenuTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE576E229B21390078EDCF /* MenuTableRow.swift */; };
+		B3DE5771229B2C810078EDCF /* ItemsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DE5770229B2C810078EDCF /* ItemsInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +144,8 @@
 		B3A022E02298243800A3A2C6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		B3A022EC22999AE400A3A2C6 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		B3A022EE2299A34C00A3A2C6 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		B3DE576E229B21390078EDCF /* MenuTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableRow.swift; sourceTree = "<group>"; };
+		B3DE5770229B2C810078EDCF /* ItemsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +246,8 @@
 				B30CA4AB2291DDD000298A2D /* ExtensionDelegate.swift */,
 				B30CA4AD2291DDD100298A2D /* Assets.xcassets */,
 				B30CA4AF2291DDD100298A2D /* Info.plist */,
+				B3DE576E229B21390078EDCF /* MenuTableRow.swift */,
+				B3DE5770229B2C810078EDCF /* ItemsInterfaceController.swift */,
 			);
 			path = "workshop app WatchKit Extension";
 			sourceTree = "<group>";
@@ -415,8 +423,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3DE5771229B2C810078EDCF /* ItemsInterfaceController.swift in Sources */,
 				B30CA4AC2291DDD000298A2D /* ExtensionDelegate.swift in Sources */,
 				B30CA4AA2291DDD000298A2D /* InterfaceController.swift in Sources */,
+				B3DE576F229B21390078EDCF /* MenuTableRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
