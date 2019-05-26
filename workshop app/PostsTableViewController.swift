@@ -10,22 +10,10 @@ import UIKit
 
 
 
-struct WSDateFormatter {
-  static let `default` : DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .medium
-    formatter.timeStyle = .none
-    return formatter
-  }()
-}
-
-enum PostFilter {
-  case author(UUID), authorWithPost(UUID)
-}
 
 class PostsTableViewController: UITableViewController {
   static let identifer = "post"
-  var posts : [PostEmbeded]?
+  var posts : [PostEmbedded]?
   
   var origin : Origin?
   

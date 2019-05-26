@@ -11,9 +11,9 @@ import UIKit
 
 class CommentsTableViewController: UITableViewController {
   static let identifer = "comment"
-  var comments : [CommentEmbeded]?
+  var comments : [CommentEmbedded]?
   
-  var post: PostEmbeded?
+  var post: PostEmbedded?
   var origin : Origin?
   weak var alertController : UIAlertController?
   

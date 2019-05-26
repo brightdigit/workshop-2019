@@ -35,6 +35,16 @@
 		B3861002229ABF8B005A85FF /* UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861001229ABF8B005A85FF /* UITabBarController.swift */; };
 		B3861004229AC057005A85FF /* Tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861003229AC057005A85FF /* Tables.swift */; };
 		B3861005229AC143005A85FF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022EE2299A34C00A3A2C6 /* UIView.swift */; };
+		B386100C229AC1A8005A85FF /* PostFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861006229AC1A8005A85FF /* PostFilter.swift */; };
+		B386100D229AC1A8005A85FF /* UserEmbedded.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861007229AC1A8005A85FF /* UserEmbedded.swift */; };
+		B386100E229AC1A8005A85FF /* WSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861008229AC1A8005A85FF /* WSDateFormatter.swift */; };
+		B386100F229AC1A8005A85FF /* PostSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861009229AC1A8005A85FF /* PostSelection.swift */; };
+		B3861010229AC1A8005A85FF /* CommentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B386100A229AC1A8005A85FF /* CommentFilter.swift */; };
+		B3861011229AC1A8005A85FF /* PostEmbedded.swift in Sources */ = {isa = PBXBuildFile; fileRef = B386100B229AC1A8005A85FF /* PostEmbedded.swift */; };
+		B3861013229AC1FB005A85FF /* CommentEmbedded.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861012229AC1FB005A85FF /* CommentEmbedded.swift */; };
+		B3861017229AC35B005A85FF /* Cache.ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861014229AC35B005A85FF /* Cache.ImageType.swift */; };
+		B3861018229AC35B005A85FF /* Cache.Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861015229AC35B005A85FF /* Cache.Key.swift */; };
+		B3861019229AC35B005A85FF /* Cache.Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861016229AC35B005A85FF /* Cache.Method.swift */; };
 		B3A022DD22981ABD00A3A2C6 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */; };
 		B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */; };
 		B3A022E12298243800A3A2C6 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022E02298243800A3A2C6 /* Cache.swift */; };
@@ -115,6 +125,16 @@
 		B3860FFF229ABF7D005A85FF /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		B3861001229ABF8B005A85FF /* UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarController.swift; sourceTree = "<group>"; };
 		B3861003229AC057005A85FF /* Tables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tables.swift; sourceTree = "<group>"; };
+		B3861006229AC1A8005A85FF /* PostFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFilter.swift; sourceTree = "<group>"; };
+		B3861007229AC1A8005A85FF /* UserEmbedded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEmbedded.swift; sourceTree = "<group>"; };
+		B3861008229AC1A8005A85FF /* WSDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSDateFormatter.swift; sourceTree = "<group>"; };
+		B3861009229AC1A8005A85FF /* PostSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSelection.swift; sourceTree = "<group>"; };
+		B386100A229AC1A8005A85FF /* CommentFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentFilter.swift; sourceTree = "<group>"; };
+		B386100B229AC1A8005A85FF /* PostEmbedded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEmbedded.swift; sourceTree = "<group>"; };
+		B3861012229AC1FB005A85FF /* CommentEmbedded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEmbedded.swift; sourceTree = "<group>"; };
+		B3861014229AC35B005A85FF /* Cache.ImageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.ImageType.swift; sourceTree = "<group>"; };
+		B3861015229AC35B005A85FF /* Cache.Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.Key.swift; sourceTree = "<group>"; };
+		B3861016229AC35B005A85FF /* Cache.Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.Method.swift; sourceTree = "<group>"; };
 		B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		B3A022E02298243800A3A2C6 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -165,11 +185,15 @@
 		B30CA4852291DDCC00298A2D /* workshop app */ = {
 			isa = PBXGroup;
 			children = (
+				B3861014229AC35B005A85FF /* Cache.ImageType.swift */,
+				B3861015229AC35B005A85FF /* Cache.Key.swift */,
+				B3861016229AC35B005A85FF /* Cache.Method.swift */,
 				B30CA4862291DDCC00298A2D /* AppDelegate.swift */,
 				B30CA48D2291DDCF00298A2D /* Assets.xcassets */,
 				B318E2992292D9E100F64023 /* Badge.swift */,
 				B3A022E02298243800A3A2C6 /* Cache.swift */,
 				B30CA4C12292C8EB00298A2D /* Comment.swift */,
+				B386100A229AC1A8005A85FF /* CommentFilter.swift */,
 				B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */,
 				B3860FFB229AB0A1005A85FF /* CommentsTableViewCell.xib */,
 				B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */,
@@ -177,18 +201,24 @@
 				B30CA4922291DDCF00298A2D /* Info.plist */,
 				B30CA48F2291DDCF00298A2D /* LaunchScreen.storyboard */,
 				B30CA4BF2292C8AC00298A2D /* Post.swift */,
+				B386100B229AC1A8005A85FF /* PostEmbedded.swift */,
+				B3861006229AC1A8005A85FF /* PostFilter.swift */,
+				B3861009229AC1A8005A85FF /* PostSelection.swift */,
 				B36240672296CF1200FF192E /* PostsTableViewCell.swift */,
 				B3A022EC22999AE400A3A2C6 /* PostsTableViewCell.xib */,
 				B36240652296C24F00FF192E /* PostsTableViewController.swift */,
+				B3860FFD229ABF74005A85FF /* TabItemable.swift */,
+				B3861003229AC057005A85FF /* Tables.swift */,
+				B3861001229ABF8B005A85FF /* UITabBarController.swift */,
 				B3A022EE2299A34C00A3A2C6 /* UIView.swift */,
+				B3860FFF229ABF7D005A85FF /* UIWindow.swift */,
 				B30CA4BD2292C84300298A2D /* User.swift */,
+				B3861007229AC1A8005A85FF /* UserEmbedded.swift */,
 				B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */,
 				B346C7362298DDE5002ACE07 /* UsersTableViewCell.xib */,
 				B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */,
-				B3860FFD229ABF74005A85FF /* TabItemable.swift */,
-				B3860FFF229ABF7D005A85FF /* UIWindow.swift */,
-				B3861001229ABF8B005A85FF /* UITabBarController.swift */,
-				B3861003229AC057005A85FF /* Tables.swift */,
+				B3861008229AC1A8005A85FF /* WSDateFormatter.swift */,
+				B3861012229AC1FB005A85FF /* CommentEmbedded.swift */,
 			);
 			path = "workshop app";
 			sourceTree = "<group>";
@@ -351,23 +381,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3861002229ABF8B005A85FF /* UITabBarController.swift in Sources */,
+				B3861017229AC35B005A85FF /* Cache.ImageType.swift in Sources */,
 				B318E29A2292D9E100F64023 /* Badge.swift in Sources */,
 				B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */,
 				B30CA4C42292C9AD00298A2D /* Database.swift in Sources */,
 				B30CA4C22292C8EB00298A2D /* Comment.swift in Sources */,
 				B30CA4892291DDCC00298A2D /* UsersTableViewController.swift in Sources */,
+				B386100D229AC1A8005A85FF /* UserEmbedded.swift in Sources */,
 				B36240662296C24F00FF192E /* PostsTableViewController.swift in Sources */,
+				B3861013229AC1FB005A85FF /* CommentEmbedded.swift in Sources */,
 				B3A022E12298243800A3A2C6 /* Cache.swift in Sources */,
 				B318E29C2292E2EE00F64023 /* UsersTableViewCell.swift in Sources */,
+				B386100C229AC1A8005A85FF /* PostFilter.swift in Sources */,
+				B3861018229AC35B005A85FF /* Cache.Key.swift in Sources */,
 				B3A022DD22981ABD00A3A2C6 /* CommentsTableViewCell.swift in Sources */,
+				B3861010229AC1A8005A85FF /* CommentFilter.swift in Sources */,
+				B3861019229AC35B005A85FF /* Cache.Method.swift in Sources */,
 				B30CA4872291DDCC00298A2D /* AppDelegate.swift in Sources */,
 				B36240682296CF1200FF192E /* PostsTableViewCell.swift in Sources */,
 				B3860FFE229ABF74005A85FF /* TabItemable.swift in Sources */,
 				B30CA4BE2292C84300298A2D /* User.swift in Sources */,
+				B386100F229AC1A8005A85FF /* PostSelection.swift in Sources */,
+				B3861011229AC1A8005A85FF /* PostEmbedded.swift in Sources */,
 				B30CA4C02292C8AC00298A2D /* Post.swift in Sources */,
 				B3861004229AC057005A85FF /* Tables.swift in Sources */,
 				B3861005229AC143005A85FF /* UIView.swift in Sources */,
 				B3861000229ABF7D005A85FF /* UIWindow.swift in Sources */,
+				B386100E229AC1A8005A85FF /* WSDateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

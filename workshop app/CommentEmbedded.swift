@@ -1,5 +1,5 @@
 //
-//  Tables.swift
+//  CommentEmbedded.swift
 //  workshop app
 //
 //  Created by Leo Dion on 5/26/19.
@@ -7,9 +7,8 @@
 //
 
 import Foundation
-
-struct Tables : Codable {
-  let posts : [Post]
-  let users : [User]
-  let comments : [Comment]
+struct CommentEmbedded {
+  let comment : Comment
+  let post : Post!
+  let author : User!
 }

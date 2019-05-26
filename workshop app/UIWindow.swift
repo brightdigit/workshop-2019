@@ -6,4 +6,13 @@
 //  Copyright © 2019 Leo Dion. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UIWindow {
+  static func makeWindow(keyAndVisibleWithViewController rootViewController: UIViewController?) -> UIWindow {
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    window.rootViewController = rootViewController
+    window.makeKeyAndVisible()
+    return window
+  }
+}

@@ -14,34 +14,8 @@ struct Cache {
   let storage = NSCache<Key, UIImage>()
   
   
-  enum ImageType : Int {
-    case post = 1, avatar
-  }
   
-  class Key : NSObject {
-    let uuid : UUID
-    let type : ImageType
-    
-    init (type : ImageType, uuid: UUID) {
-      self.uuid = uuid
-      self.type = type
-    }
-    
-    override var hash: Int {
-      return uuid.hashValue ^ type.hashValue
-    }
-    
-    override func isEqual(_ object: Any?) -> Bool {
-      guard let other = object as? Key else {
-        return false
-      }
-      
-      return self.uuid == other.uuid && self.type == other.type
-    }
-  }
-  enum Method {
-    case cached, loaded
-  }
+  
   
   func loadImage(fromURL url : URL, ofType type: ImageType, withUUID uuid: UUID, _ completion: @escaping (UIImage?, Method) -> Void) -> URLSessionDataTask? {
     let key = Key(type: type, uuid: uuid)

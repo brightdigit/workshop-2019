@@ -8,43 +8,15 @@
 
 import UIKit
 
-protocol TabItemable {
-  func configureTabItem(_ tabItem : UITabBarItem)
-}
-
-extension UITabBarController {
-  convenience init(navigationRootViewControllers: [UIViewController], animated : Bool = false) {
-    self.init()
-    
-    let viewControllers = navigationRootViewControllers.map
-    { rootViewController -> UIViewController in
-      let viewController = UINavigationController(rootViewController: rootViewController)
-      if let tabItemable = rootViewController as? TabItemable {
-        tabItemable.configureTabItem(viewController.tabBarItem)
-      }
-      return viewController
-    }
-    self.setViewControllers(viewControllers, animated: animated)
-  }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  var window: UIWindow?
-
-  let navigationRootViewControllers = [UsersTableViewController(), PostsTableViewController(), CommentsTableViewController()]
-
-  func makeWindow(keyAndVisibleWithViewController rootViewController: UIViewController?) -> UIWindow {
-    let window = UIWindow(frame: UIScreen.main.bounds)
-    window.rootViewController = UITabBarController(navigationRootViewControllers: navigationRootViewControllers)
-    window.makeKeyAndVisible()
-    return window
-  }
+  var window: UIWindow?  
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    self.window = makeWindow(keyAndVisibleWithViewController: UITabBarController(navigationRootViewControllers: navigationRootViewControllers))
+    let navigationRootViewControllers = [UsersTableViewController(), PostsTableViewController(), CommentsTableViewController()]
+    self.window = .makeWindow(keyAndVisibleWithViewController: UITabBarController(navigationRootViewControllers: navigationRootViewControllers))
     return true
   }
 

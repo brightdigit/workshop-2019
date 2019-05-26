@@ -6,4 +6,8 @@
 //  Copyright © 2019 Leo Dion. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol TabItemable {
+  func configureTabItem(_ tabItem : UITabBarItem)
+}
