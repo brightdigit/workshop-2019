@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserView" customModule="workshop_app" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UsersTableViewCell" customModule="workshop_app" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="659" height="225"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -69,7 +69,7 @@
             <connections>
                 <outlet property="avatarView" destination="3im-Hk-5Ll" id="bV6-4G-jIP"/>
                 <outlet property="badgeLabel" destination="Vqd-Cr-UUY" id="gR2-dd-AD8"/>
-                <outlet property="summaryLabel" destination="C5d-hl-zU1" id="q8J-l4-LcW"/>
+                <outlet property="postsSummaryLabel" destination="C5d-hl-zU1" id="eaA-0P-ozn"/>
                 <outlet property="usernameLabel" destination="mhz-Jh-8ts" id="PWT-yf-oeZ"/>
             </connections>
             <point key="canvasLocation" x="405" y="223"/>

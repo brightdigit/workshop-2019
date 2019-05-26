@@ -70,10 +70,20 @@ class UsersTableViewController: UIViewController, UITableViewDataSource, UITable
     
     return cell
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let user = self.users?[indexPath.row] else {
+      return
+    }
+    let viewController = PostsTableViewController()
+    viewController.origin = .author(user.user.id)
+    self.navigationController?.pushViewController(viewController, animated: true)
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
+    self.tableView.register(UINib(nibName: "UsersTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "user")
     Database.shared.users { (userPosts) in
       self.users = userPosts
       DispatchQueue.main.async {

@@ -58,67 +58,6 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="user" rowHeight="136" id="4xO-ba-AXh" customClass="UsersTableViewCell" customModule="workshop_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="136"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4xO-ba-AXh" id="2Uo-S5-nhX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="135.66666666666666"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xld-vA-2MX">
-                                                    <rect key="frame" x="20.000000000000007" y="20.000000000000007" width="95.666666666666686" height="95.666666666666686"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Xld-vA-2MX" secondAttribute="height" multiplier="1:1" id="if0-yn-YS2"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vbl-4e-U9T">
-                                                    <rect key="frame" x="123.66666666666667" y="20.000000000000007" width="250.33333333333331" height="95.666666666666686"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ZK-lB-7qu">
-                                                            <rect key="frame" x="0.0" y="0.0" width="250.33333333333334" height="48"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" ambiguous="YES" text="badge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1f-fy-qlN">
-                                                            <rect key="frame" x="0.0" y="52" width="250.33333333333334" height="19.333333333333329"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" ambiguous="YES" text="6 posts, latest on July 32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8r-e0-xBL">
-                                                            <rect key="frame" x="0.0" y="75.333333333333329" width="250.33333333333334" height="20.333333333333329"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="Mn0-88-HMo"/>
-                                                        <constraint firstItem="6ZK-lB-7qu" firstAttribute="height" relation="lessThanOrEqual" secondItem="vbl-4e-U9T" secondAttribute="height" multiplier="0.5" id="f62-Rv-g2c"/>
-                                                    </constraints>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="vbl-4e-U9T" firstAttribute="top" secondItem="Xld-vA-2MX" secondAttribute="top" id="87n-yF-Mya"/>
-                                                <constraint firstItem="vbl-4e-U9T" firstAttribute="leading" secondItem="Xld-vA-2MX" secondAttribute="trailing" constant="8" symbolic="YES" id="Ufh-Uj-6pj"/>
-                                                <constraint firstItem="Xld-vA-2MX" firstAttribute="top" secondItem="2Uo-S5-nhX" secondAttribute="top" constant="20" symbolic="YES" id="VVV-bl-7nh"/>
-                                                <constraint firstItem="vbl-4e-U9T" firstAttribute="bottom" secondItem="Xld-vA-2MX" secondAttribute="bottom" id="hac-JC-Iey"/>
-                                                <constraint firstAttribute="bottom" secondItem="Xld-vA-2MX" secondAttribute="bottom" constant="20" symbolic="YES" id="qTn-ss-MC1"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="vbl-4e-U9T" secondAttribute="trailing" constant="20" id="tAg-4J-Ape"/>
-                                                <constraint firstItem="Xld-vA-2MX" firstAttribute="leading" secondItem="2Uo-S5-nhX" secondAttribute="leading" constant="20" id="yIQ-or-Xua"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="avatarView" destination="Xld-vA-2MX" id="9zC-3g-jxN"/>
-                                            <outlet property="badgeLabel" destination="z1f-fy-qlN" id="MhT-GR-j6Z"/>
-                                            <outlet property="postsSummaryLabel" destination="z8r-e0-xBL" id="aEw-f6-LRv"/>
-                                            <outlet property="usernameLabel" destination="6ZK-lB-7qu" id="rcF-89-zLt"/>
-                                            <segue destination="iJN-Sf-Sht" kind="show" id="SuG-dH-wyl"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="XhI-uG-WZI" id="gk0-fM-wcb"/>
                                     <outlet property="delegate" destination="XhI-uG-WZI" id="cIb-QF-2Nb"/>

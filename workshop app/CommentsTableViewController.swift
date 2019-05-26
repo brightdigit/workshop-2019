@@ -38,7 +38,7 @@ class CommentsTableViewController: UITableViewController {
     super.viewDidLoad()
     
     self.navigationItem.title = self.origin != nil ? "Loading..." : "Comments"
-    
+    self.tableView.register(UINib(nibName: "CommentsTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "comment")
     let group = DispatchGroup()
     
     group.enter()
@@ -49,7 +49,7 @@ class CommentsTableViewController: UITableViewController {
     
     if let origin = self.origin {
       
-        self.tableView.register(UINib(nibName: "PostView", bundle: Bundle.main), forCellReuseIdentifier: "post")
+      self.tableView.register(UINib(nibName: "PostView", bundle: Bundle.main), forCellReuseIdentifier: "post")
       self.tableView.estimatedSectionHeaderHeight = tableView.frame.width / 3.0 * 2.0 + 300
       self.tableView.sectionHeaderHeight = UITableView.automaticDimension
       group.enter()
@@ -132,20 +132,40 @@ class CommentsTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard self.origin == nil else {
-      self.performSegue(withIdentifier: "Comment Author", sender: tableView)
+    if self.origin != nil {
+      guard let userId = self.comments?[indexPath.row].author.id else {
+        return
+      }
+      //self.performSegue(withIdentifier: "Comment Author", sender: tableView)
+      let viewController = PostsTableViewController()
+      viewController.origin = .author(userId)
+      self.navigationController?.pushViewController(viewController, animated: true)
       return
+    } else {
+      let alertController = UIAlertController(title: nil, message: "What would you like to see?", preferredStyle: .actionSheet)
+      for action in Action.allCases {
+        alertController.addAction(UIAlertAction(title: action.rawValue, style: .default, handler: self.onComment(alertAction:)))
+      }
+      alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+      self.present(alertController, animated: true, completion: nil)
     }
-    let alertController = UIAlertController(title: nil, message: "What would you like to see?", preferredStyle: .actionSheet)
-    for action in Action.allCases {
-      alertController.addAction(UIAlertAction(title: action.rawValue, style: .default, handler: self.onComment(alertAction:)))
-    }
-    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    self.present(alertController, animated: true, completion: nil)
   }
   
   enum Action : String, CaseIterable {
     case post = "Post", user = "Comment Author"
+    
+    func viewController(forComment comment: Comment) -> UIViewController {
+      switch self {
+      case .post:
+        let viewController = CommentsTableViewController()
+        viewController.origin = .comment(comment.id)
+        return viewController
+      case .user:
+        let viewController = PostsTableViewController()
+        viewController.origin = .author(comment.userId)
+        return viewController
+      }
+    }
   }
   
   func onComment(alertAction: UIAlertAction) {
@@ -155,7 +175,13 @@ class CommentsTableViewController: UITableViewController {
     guard let action = Action(rawValue: title) else {
       return
     }
-    self.performSegue(withIdentifier: action.rawValue, sender: self.alertController)
+    guard let indexPath = self.tableView.indexPathForSelectedRow else {
+      return
+    }
+    guard let comment = self.comments?[indexPath.row] else {
+      return
+    }
+    self.navigationController?.pushViewController(action.viewController(forComment: comment.comment), animated: true)
     self.alertController = nil
   }
   

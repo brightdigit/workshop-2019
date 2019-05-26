@@ -170,7 +170,7 @@ class PostsTableViewController: UITableViewController {
       return nil
     }
     
-    let userView : UserView = .fromNib()
+    let userView : UsersTableViewCell = .fromNib()
     
     _ = Cache.loadImage(fromURL: user.avatar, ofType: .avatar, withUUID: user.id) { (image, method) in
       guard let image = image else {
@@ -193,7 +193,7 @@ class PostsTableViewController: UITableViewController {
     }
     userView.badgeLabel.text = "\(user.badge)"
     userView.usernameLabel.text = user.name
-    userView.summaryLabel.text = summaryText
+    userView.postsSummaryLabel.text = summaryText
     
     return userView
   }
@@ -203,7 +203,14 @@ class PostsTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    self.performSegue(withIdentifier: "postComments", sender: tableView)
+    guard let postId = self.posts?[indexPath.row].post.id else {
+      return
+    }
+    
+    let viewController = CommentsTableViewController()
+    viewController.origin = .post(postId)
+    self.navigationController?.pushViewController(viewController, animated: true)
+    //self.performSegue(withIdentifier: "postComments", sender: tableView)
   }
 
   /*
@@ -244,12 +251,6 @@ class PostsTableViewController: UITableViewController {
   // MARK: - Navigation
   
   // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    // Get the new view controller using segue.destination.
-    // Pass the selected object to the new view controller.
-    if let viewController = segue.destination as? CommentsTableViewController, let indexPath = self.tableView.indexPathForSelectedRow, let postId = self.posts?[indexPath.row].post.id {
-      viewController.origin = .post(postId)
-    }
-  }
+
   
 }
