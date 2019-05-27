@@ -29,6 +29,10 @@ func zap<Key,ValueA,ValueB>(_ lhs : Dictionary<Key,ValueA>, _ rhs : Dictionary<K
 
 struct MenuItem {
   enum DataType : CaseIterable, ItemType {
+    var message: [String : Any] {
+      return ["command" : self]
+    }
+    
     case user, post, comment
   }
   
@@ -92,6 +96,7 @@ class InterfaceController: WKInterfaceController {
  
   override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
     let type = MenuItem.allItems[rowIndex].type
+    
     self.pushController(withName: "items", context: type)
   }
 }
