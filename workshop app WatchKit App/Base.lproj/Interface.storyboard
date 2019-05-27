@@ -42,34 +42,24 @@
             <objects>
                 <controller identifier="items" id="X9D-a2-TDu" customClass="ItemsInterfaceController" customModule="workshop_app_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" layout="overlap" id="gkQ-2b-A4c">
+                        <table alignment="left" id="pG4-4m-Zx5">
                             <items>
-                                <group alignment="center" verticalAlignment="center" layout="vertical" id="Ahi-fB-BdO">
-                                    <items>
-                                        <imageView width="0.5" height="0.5" alignment="center" verticalAlignment="center" image="ai0" id="noG-0Q-xJN"/>
-                                    </items>
-                                </group>
-                                <table alignment="left" id="pG4-4m-Zx5">
-                                    <items>
-                                        <tableRow identifier="item" id="IzH-bp-nYH" customClass="MenuTableRow" customModule="workshop_app_WatchKit_Extension">
-                                            <group key="rootItem" width="1" alignment="left" spacing="4" id="y3t-lH-4h2">
-                                                <items>
-                                                    <imageView width="32" height="1" heightAdjustment="-8" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="9f4-E6-Jeh"/>
-                                                    <label alignment="left" verticalAlignment="center" text="Label" id="m1b-Je-M2Q"/>
-                                                </items>
-                                            </group>
-                                            <connections>
-                                                <outlet property="image" destination="9f4-E6-Jeh" id="bsR-1A-P3m"/>
-                                                <outlet property="label" destination="m1b-Je-M2Q" id="Y5Q-Y3-HqZ"/>
-                                            </connections>
-                                        </tableRow>
-                                    </items>
-                                </table>
+                                <tableRow identifier="item" id="IzH-bp-nYH" customClass="MenuTableRow" customModule="workshop_app_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" spacing="4" id="y3t-lH-4h2">
+                                        <items>
+                                            <imageView width="32" height="1" heightAdjustment="-8" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="9f4-E6-Jeh"/>
+                                            <label alignment="left" verticalAlignment="center" text="Label" id="m1b-Je-M2Q"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="image" destination="9f4-E6-Jeh" id="bsR-1A-P3m"/>
+                                        <outlet property="label" destination="m1b-Je-M2Q" id="Y5Q-Y3-HqZ"/>
+                                    </connections>
+                                </tableRow>
                             </items>
-                        </group>
+                        </table>
                     </items>
                     <connections>
-                        <outlet property="image" destination="noG-0Q-xJN" id="3w7-f0-GtP"/>
                         <outlet property="table" destination="pG4-4m-Zx5" id="ygw-yg-W1i"/>
                     </connections>
                 </controller>

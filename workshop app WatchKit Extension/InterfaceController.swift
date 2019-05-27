@@ -26,26 +26,46 @@ func zap<Key,ValueA,ValueB>(_ lhs : Dictionary<Key,ValueA>, _ rhs : Dictionary<K
     return ($0.key, $0.value, rhs[$0.key]!)
   }
 }
+enum DataType : String, CaseIterable, ItemType {
+  var dataType: DataType {
+    return self
+  }
+  
+  var id: UUID? {
+    return nil
+  }
+  
+  func child(withId id: UUID) -> ItemType? {
+    switch self {
+    case .user:
+      return ItemTypeEnum.posts(id)
+    case .post:
+      return ItemTypeEnum.comments(id)
+    default:
+      return nil
+    }
+  }
+  
+  var message: [String : Any] {
+    return ["command" : self.rawValue]
+  }
+  
+  func dataItem(fromDictionary dictionary: [String : Any]) throws -> DataItem {
+    switch self {
+    case .user:
+      return try UserEmbeded(jsonDictionary: dictionary)
+    case .post:
+      return try PostEmbedded(jsonDictionary: dictionary)
+    case .comment:
+      return try CommentEmbedded(jsonDictionary: dictionary)
+    }
+  }
+  
+  case user, post, comment
+}
 
 struct MenuItem {
-  enum DataType : String, CaseIterable, ItemType {
-    var message: [String : Any] {
-      return ["command" : self.rawValue]
-    }
-    
-    func dataItem(fromDictionary dictionary: [String : Any]) throws -> DataItem {
-      switch self {
-      case .user:
-        return try UserEmbeded(jsonDictionary: dictionary)
-      case .post:
-        return try PostEmbedded(jsonDictionary: dictionary)
-      case .comment:
-        return try CommentEmbedded(jsonDictionary: dictionary)
-      }
-    }
-    
-    case user, post, comment
-  }
+  
   
   let type : DataType
   let label : String

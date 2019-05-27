@@ -10,6 +10,7 @@ import UIKit
 protocol DataItem {
   var label : String { get }
   func image (_ completion : @escaping (UIImage?) -> Void) -> URLSessionDataTask?
+  var id : UUID { get }
 }
 
 extension UserEmbeded : DataItem {
@@ -18,6 +19,9 @@ extension UserEmbeded : DataItem {
     return Cache.shared.loadImage(fromURL: self.user.avatar, ofType: .avatar, withUUID: self.user.id) { (image, _) in
       completion(image)
     }
+  }
+  var id: UUID {
+    return self.user.id
   }
 }
 
@@ -28,6 +32,9 @@ extension PostEmbedded : DataItem {
       completion(image)
     }
   }
+  var id: UUID {
+    return self.post.id
+  }
 }
 
 extension CommentEmbedded : DataItem {
@@ -37,5 +44,8 @@ extension CommentEmbedded : DataItem {
     return Cache.shared.loadImage(fromURL: self.author.avatar, ofType: .avatar, withUUID: self.author.id) { (image, _) in
       completion(image)
     }
+  }
+  var id: UUID {
+    return self.comment.id
   }
 }
