@@ -57,6 +57,12 @@
 		B3861017229AC35B005A85FF /* Cache.ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861014229AC35B005A85FF /* Cache.ImageType.swift */; };
 		B3861018229AC35B005A85FF /* Cache.Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861015229AC35B005A85FF /* Cache.Key.swift */; };
 		B3861019229AC35B005A85FF /* Cache.Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861016229AC35B005A85FF /* Cache.Method.swift */; };
+		B38D9BD2229BF951009EBAA9 /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = B301EF2E2291ED4D000CEFB4 /* db.json */; };
+		B38D9BD3229BF95D009EBAA9 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4C32292C9AD00298A2D /* Database.swift */; };
+		B38D9BD4229BF995009EBAA9 /* Tables.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861003229AC057005A85FF /* Tables.swift */; };
+		B38D9BD5229BF9A8009EBAA9 /* CommentFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B386100A229AC1A8005A85FF /* CommentFilter.swift */; };
+		B38D9BD6229BF9A8009EBAA9 /* PostFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861006229AC1A8005A85FF /* PostFilter.swift */; };
+		B38D9BD7229BF9A8009EBAA9 /* PostSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3861009229AC1A8005A85FF /* PostSelection.swift */; };
 		B3A022DD22981ABD00A3A2C6 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */; };
 		B3A022DF22981AF000A3A2C6 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */; };
 		B3A022E12298243800A3A2C6 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A022E02298243800A3A2C6 /* Cache.swift */; };
@@ -390,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B30CA4AE2291DDD100298A2D /* Assets.xcassets in Resources */,
+				B38D9BD2229BF951009EBAA9 /* db.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,8 +455,13 @@
 				B3257514229BE76500B4D24A /* Cache.swift in Sources */,
 				B325750C229BE50A00B4D24A /* User.swift in Sources */,
 				B325750D229BE50A00B4D24A /* UserEmbedded.swift in Sources */,
+				B38D9BD3229BF95D009EBAA9 /* Database.swift in Sources */,
+				B38D9BD7229BF9A8009EBAA9 /* PostSelection.swift in Sources */,
+				B38D9BD5229BF9A8009EBAA9 /* CommentFilter.swift in Sources */,
+				B38D9BD6229BF9A8009EBAA9 /* PostFilter.swift in Sources */,
 				B325750B229BE50A00B4D24A /* PostEmbedded.swift in Sources */,
 				B325750A229BE50A00B4D24A /* Post.swift in Sources */,
+				B38D9BD4229BF995009EBAA9 /* Tables.swift in Sources */,
 				B3DE576F229B21390078EDCF /* MenuTableRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

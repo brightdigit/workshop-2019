@@ -51,13 +51,17 @@
                                 </group>
                                 <table alignment="left" id="pG4-4m-Zx5">
                                     <items>
-                                        <tableRow id="IzH-bp-nYH">
+                                        <tableRow identifier="item" id="IzH-bp-nYH" customClass="MenuTableRow" customModule="workshop_app_WatchKit_Extension">
                                             <group key="rootItem" width="1" alignment="left" spacing="4" id="y3t-lH-4h2">
                                                 <items>
                                                     <imageView width="32" height="1" heightAdjustment="-8" alignment="left" verticalAlignment="center" contentMode="scaleAspectFit" id="9f4-E6-Jeh"/>
                                                     <label alignment="left" verticalAlignment="center" text="Label" id="m1b-Je-M2Q"/>
                                                 </items>
                                             </group>
+                                            <connections>
+                                                <outlet property="image" destination="9f4-E6-Jeh" id="bsR-1A-P3m"/>
+                                                <outlet property="label" destination="m1b-Je-M2Q" id="Y5Q-Y3-HqZ"/>
+                                            </connections>
                                         </tableRow>
                                     </items>
                                 </table>
@@ -66,6 +70,7 @@
                     </items>
                     <connections>
                         <outlet property="image" destination="noG-0Q-xJN" id="3w7-f0-GtP"/>
+                        <outlet property="table" destination="pG4-4m-Zx5" id="ygw-yg-W1i"/>
                     </connections>
                 </controller>
             </objects>

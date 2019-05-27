@@ -17,7 +17,7 @@ struct Cache {
   
   
   
-  func loadImage(fromURL url : URL, ofType type: ImageType, withUUID uuid: UUID, _ completion: @escaping (UIImage?, Method) -> Void) -> URLSessionDataTask? {
+  func loadImage(fromURL url : URL, ofType type: ImageType, withUUID uuid: UUID, cachePolicy: URLRequest.CachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: TimeInterval = TimeInterval.greatestFiniteMagnitude, _ completion: @escaping (UIImage?, Method) -> Void) -> URLSessionDataTask? {
     let key = Key(type: type, uuid: uuid)
     if let image = storage.object(forKey: key) {
       completion(image, .cached)
@@ -25,7 +25,9 @@ struct Cache {
       //cell.postImageView.image = image
     } else {
       //cell.postImageView.image = nil
-      let task = URLSession.shared.dataTask(with:url) { (data, _, _) in
+      let urlRequest = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+      
+      let task = URLSession.shared.dataTask(with: urlRequest) { (data, _, _) in
         
         guard let data = data else {
           completion(nil, .loaded)

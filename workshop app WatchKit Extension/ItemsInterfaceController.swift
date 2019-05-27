@@ -35,6 +35,7 @@ extension Decodable {
 class ItemsInterfaceController: WKInterfaceController {
   var type : ItemType!
   var data : [DataItem]?
+  @IBOutlet weak var table : WKInterfaceTable!
   @IBOutlet weak var image : WKInterfaceImage!
   
   override func awake(withContext context: Any?) {
@@ -47,17 +48,13 @@ class ItemsInterfaceController: WKInterfaceController {
     image.setImageNamed("ai")
     image.startAnimatingWithImages(in: NSRange(location: 0, length: 40), duration: 1.0, repeatCount: 0)
     
-    WCSession.default.sendMessage(type.message, replyHandler: { (reply) in
-      let items : [DataItem]?
-      if let dictionaries = reply["items"] as? [[String : Any]] {
-        items = try! dictionaries.map(self.type.dataItem(fromDictionary:))
-      } else {
-        items = nil
+    switch dataType {
+    case .some(.user):
+      Database.shared.users { (users) in
+        self.data = users
+        self.reload()
       }
-      self.data = items
-      
-    }) { (error) in
-      debugPrint(error)
+    default: break
     }
   }
   
@@ -71,4 +68,22 @@ class ItemsInterfaceController: WKInterfaceController {
     super.didDeactivate()
   }
   
+  func reload () {
+    guard let data = self.data else {
+      return
+    }
+    
+    self.table.setNumberOfRows(data.count, withRowType: "item")
+    
+    for (index, item) in data.enumerated() {
+      guard let row = self.table.rowController(at: index) as? MenuTableRow else {
+        continue
+      }
+      _ = item.image { (image) in
+        row.image.setImage(image)
+      }
+      row.label.setText(item.label)
+      self.image.setHidden(true)
+    }
+  }
 }

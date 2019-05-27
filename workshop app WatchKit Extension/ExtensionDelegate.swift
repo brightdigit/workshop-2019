@@ -9,10 +9,12 @@
 import WatchKit
 import WatchConnectivity
 
+
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
   func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     
   }
+  
   
   
   func applicationDidFinishLaunching() {

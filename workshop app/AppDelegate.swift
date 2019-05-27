@@ -17,7 +17,9 @@ extension Encodable {
     return dictionary[key]
   }
   var dictionary: [String: Any] {
-    return (try? JSONSerialization.jsonObject(with: JSON.encoder.encode(self))) as? [String: Any] ?? [:]
+    let jsonObject = (try! JSONSerialization.jsonObject(with: JSON.encoder.encode(self)))
+    debugPrint(jsonObject)
+    return jsonObject as! [String : Any]
   }
 }
 
@@ -74,16 +76,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     if let command = message["command"] as? String {
       switch command {
       case "user":
+        replyHandler([:])
         Database.shared.users{
-          let result = ["items" : $0.dictionary]
-          
-          replyHandler(result)
+          let result : [String : Any] = ["items" : $0.map{$0.dictionary}, "type" : command]
+          session.transferUserInfo(result)
         }
       case "post":
+        replyHandler([:])
         Database.shared.posts{
           replyHandler(["items" : $0.dictionary])
         }
       case "comment":
+        replyHandler([:])
         Database.shared.comments{
           replyHandler(["items" : $0.dictionary])
         }
