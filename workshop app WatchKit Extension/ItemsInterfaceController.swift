@@ -139,8 +139,11 @@ class ItemsInterfaceController: WKInterfaceController {
     
     // Configure interface objects here.
     
-    
-    self.type = context as? ItemType
+    if let context = context as? DataType {
+      self.type = context
+    } else if let context = context as? ItemTypeEnum {
+      self.type = context
+    }
     
     Database.shared.fetch(type) { (data) in
       self.data = data
