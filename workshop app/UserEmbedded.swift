@@ -1,6 +1,6 @@
 
 
-struct UserEmbeded {
+struct UserEmbeded : Codable {
   let user : User
   let posts : [Post]
   

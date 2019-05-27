@@ -12,21 +12,24 @@ import Foundation
 
 protocol ItemType {
   var message : [String : Any] { get }
+  func dataItem(fromDictionary dictionary :  [String: Any]) throws -> DataItem
 }
 
-protocol DataItem {
+
+
+extension Decodable {
+  
+  /// Initialies the Decodable object with a JSON dictionary.
+  ///
+  /// - Parameter jsonDictionary: json dictionary.
+  /// - Throws: throws an error if the initialization fails.
+  init(jsonDictionary: [String: Any]) throws {
+    let decoder = JSONDecoder()
+    let data = try JSONSerialization.data(withJSONObject: jsonDictionary, options: [])
+    self = try decoder.decode(Self.self, from: data)
+  }
   
 }
-
-protocol DataItemable {
-  static func items (_ data : [String : Any]) -> [Self]
-}
-
-protocol DataItemFactory {
-  associatedtype ItemType : DataItem
-  func items (_ data : [String : Any]) -> [ItemType]
-}
-
 
 
 class ItemsInterfaceController: WKInterfaceController {
@@ -38,14 +41,23 @@ class ItemsInterfaceController: WKInterfaceController {
     super.awake(withContext: context)
     
     // Configure interface objects here.
-    self.type = context as? ItemType
+    let dataType = context as? MenuItem.DataType
+    
+    self.type = dataType
     image.setImageNamed("ai")
     image.startAnimatingWithImages(in: NSRange(location: 0, length: 40), duration: 1.0, repeatCount: 0)
     
     WCSession.default.sendMessage(type.message, replyHandler: { (reply) in
+      let items : [DataItem]?
+      if let dictionaries = reply["items"] as? [[String : Any]] {
+        items = try! dictionaries.map(self.type.dataItem(fromDictionary:))
+      } else {
+        items = nil
+      }
+      self.data = items
       
     }) { (error) in
-      
+      debugPrint(error)
     }
   }
   

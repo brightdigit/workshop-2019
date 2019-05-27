@@ -9,13 +9,26 @@
 import UIKit
 import WatchConnectivity
 
+struct JSON {
+  static let encoder = JSONEncoder()
+}
+extension Encodable {
+  subscript(key: String) -> Any? {
+    return dictionary[key]
+  }
+  var dictionary: [String: Any] {
+    return (try? JSONSerialization.jsonObject(with: JSON.encoder.encode(self))) as? [String: Any] ?? [:]
+  }
+}
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
   var window: UIWindow?  
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    WCSession.default.delegate = self
     WCSession.default.activate()
     let navigationRootViewControllers = [UsersTableViewController(), PostsTableViewController(), CommentsTableViewController()]
     self.window = .makeWindow(keyAndVisibleWithViewController: UITabBarController(navigationRootViewControllers: navigationRootViewControllers))
@@ -44,6 +57,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
+  
+  func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    
+  }
+  
+  func sessionDidBecomeInactive(_ session: WCSession) {
+    
+  }
+  
+  func sessionDidDeactivate(_ session: WCSession) {
+    
+  }
 
+  func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+    if let command = message["command"] as? String {
+      switch command {
+      case "user":
+        Database.shared.users{
+          let result = ["items" : $0.dictionary]
+          
+          replyHandler(result)
+        }
+      case "post":
+        Database.shared.posts{
+          replyHandler(["items" : $0.dictionary])
+        }
+      case "comment":
+        Database.shared.comments{
+          replyHandler(["items" : $0.dictionary])
+        }
+      default:
+        replyHandler(["error": "unknown command"])
+      }
+    } else {
+      replyHandler(["error": "empty command"])
+    }
+  }
 }
 

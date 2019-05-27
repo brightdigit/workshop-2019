@@ -28,9 +28,20 @@ func zap<Key,ValueA,ValueB>(_ lhs : Dictionary<Key,ValueA>, _ rhs : Dictionary<K
 }
 
 struct MenuItem {
-  enum DataType : CaseIterable, ItemType {
+  enum DataType : String, CaseIterable, ItemType {
     var message: [String : Any] {
-      return ["command" : self]
+      return ["command" : self.rawValue]
+    }
+    
+    func dataItem(fromDictionary dictionary: [String : Any]) throws -> DataItem {
+      switch self {
+      case .user:
+        return try UserEmbeded(jsonDictionary: dictionary)
+      case .post:
+        return try PostEmbedded(jsonDictionary: dictionary)
+      case .comment:
+        return try CommentEmbedded(jsonDictionary: dictionary)
+      }
     }
     
     case user, post, comment

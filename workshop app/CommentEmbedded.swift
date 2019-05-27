@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct CommentEmbedded {
+struct CommentEmbedded : Codable {
   let comment : Comment
   let post : Post!
   let author : User!
