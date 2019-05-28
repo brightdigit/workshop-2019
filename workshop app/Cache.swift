@@ -21,10 +21,25 @@ struct Cache {
     let key = Key(type: type, uuid: uuid)
     if let image = storage.object(forKey: key) {
       completion(image, .cached)
-      
-      //cell.postImageView.image = image
     } else {
-      //cell.postImageView.image = nil
+      #if os(watchOS)
+      DispatchQueue.global().async {
+        guard let data = try? Data(contentsOf: url) else {
+          completion(nil, .loaded)
+          return
+        }
+        
+        guard let image = UIImage(data: data) else {
+          completion(nil, .loaded)
+          return
+        }
+        self.storage.setObject(image, forKey: key)
+        
+        DispatchQueue.main.async {
+          completion(image, .loaded)
+        }
+      }
+      #else
       let urlRequest = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
       
       let task = URLSession.shared.dataTask(with: urlRequest) { (data, _, _) in
@@ -46,6 +61,7 @@ struct Cache {
       }
       task.resume()
       return task
+      #endif
     }
     return nil
   }
