@@ -13,10 +13,6 @@ struct Cache {
   static let shared = Cache()
   let storage = NSCache<Key, UIImage>()
   
-  
-  
-  
-  
   func loadImage(fromURL url : URL, ofType type: ImageType, withUUID uuid: UUID, cachePolicy: URLRequest.CachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: TimeInterval = TimeInterval.greatestFiniteMagnitude, _ completion: @escaping (UIImage?, Method) -> Void) -> URLSessionDataTask? {
     let key = Key(type: type, uuid: uuid)
     if let image = storage.object(forKey: key) {

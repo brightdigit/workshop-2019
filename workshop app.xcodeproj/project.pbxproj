@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B301EF2F2291ED4D000CEFB4 /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = B301EF2E2291ED4D000CEFB4 /* db.json */; };
-		B301EF312291F4C0000CEFB4 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B301EF302291F4C0000CEFB4 /* schema.json */; };
 		B30CA4872291DDCC00298A2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4862291DDCC00298A2D /* AppDelegate.swift */; };
 		B30CA4892291DDCC00298A2D /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */; };
 		B30CA48E2291DDCF00298A2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B30CA48D2291DDCF00298A2D /* Assets.xcassets */; };
@@ -115,7 +114,6 @@
 
 /* Begin PBXFileReference section */
 		B301EF2E2291ED4D000CEFB4 /* db.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = db.json; sourceTree = "<group>"; };
-		B301EF302291F4C0000CEFB4 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		B30CA4832291DDCC00298A2D /* workshop app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "workshop app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B30CA4862291DDCC00298A2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 		B30CA47A2291DDCC00298A2D = {
 			isa = PBXGroup;
 			children = (
-				B301EF302291F4C0000CEFB4 /* schema.json */,
 				B301EF2E2291ED4D000CEFB4 /* db.json */,
 				B30CA4852291DDCC00298A2D /* workshop app */,
 				B30CA4992291DDCF00298A2D /* workshop app WatchKit App */,
@@ -210,38 +207,12 @@
 			children = (
 				B30CA4862291DDCC00298A2D /* AppDelegate.swift */,
 				B30CA48D2291DDCF00298A2D /* Assets.xcassets */,
-				B318E2992292D9E100F64023 /* Badge.swift */,
-				B3861014229AC35B005A85FF /* Cache.ImageType.swift */,
-				B3861015229AC35B005A85FF /* Cache.Key.swift */,
-				B3861016229AC35B005A85FF /* Cache.Method.swift */,
-				B3A022E02298243800A3A2C6 /* Cache.swift */,
-				B30CA4C12292C8EB00298A2D /* Comment.swift */,
-				B3861012229AC1FB005A85FF /* CommentEmbedded.swift */,
-				B386100A229AC1A8005A85FF /* CommentFilter.swift */,
-				B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */,
-				B3860FFB229AB0A1005A85FF /* CommentsTableViewCell.xib */,
-				B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */,
-				B30CA4C32292C9AD00298A2D /* Database.swift */,
+				B338D1DB22A02B83000B1F4D /* Models */,
+				B338D1DA22A02B5D000B1F4D /* Views */,
+				B338D1DD22A02BF6000B1F4D /* Controllers */,
 				B30CA4922291DDCF00298A2D /* Info.plist */,
 				B30CA48F2291DDCF00298A2D /* LaunchScreen.storyboard */,
-				B30CA4BF2292C8AC00298A2D /* Post.swift */,
-				B386100B229AC1A8005A85FF /* PostEmbedded.swift */,
-				B3861006229AC1A8005A85FF /* PostFilter.swift */,
-				B3861009229AC1A8005A85FF /* PostSelection.swift */,
-				B36240672296CF1200FF192E /* PostsTableViewCell.swift */,
-				B3A022EC22999AE400A3A2C6 /* PostsTableViewCell.xib */,
-				B36240652296C24F00FF192E /* PostsTableViewController.swift */,
-				B3860FFD229ABF74005A85FF /* TabItemable.swift */,
-				B3861003229AC057005A85FF /* Tables.swift */,
-				B3861001229ABF8B005A85FF /* UITabBarController.swift */,
-				B3A022EE2299A34C00A3A2C6 /* UIView.swift */,
-				B3860FFF229ABF7D005A85FF /* UIWindow.swift */,
-				B30CA4BD2292C84300298A2D /* User.swift */,
-				B3861007229AC1A8005A85FF /* UserEmbedded.swift */,
-				B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */,
-				B346C7362298DDE5002ACE07 /* UsersTableViewCell.xib */,
-				B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */,
-				B3861008229AC1A8005A85FF /* WSDateFormatter.swift */,
+				B338D1DC22A02BE9000B1F4D /* Extensions */,
 			);
 			path = "workshop app";
 			sourceTree = "<group>";
@@ -268,6 +239,72 @@
 				B325750F229BE6F800B4D24A /* DataItem.swift */,
 			);
 			path = "workshop app WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		B338D1DA22A02B5D000B1F4D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3860FFD229ABF74005A85FF /* TabItemable.swift */,
+				B3A022DC22981ABD00A3A2C6 /* CommentsTableViewCell.swift */,
+				B3860FFB229AB0A1005A85FF /* CommentsTableViewCell.xib */,
+				B36240672296CF1200FF192E /* PostsTableViewCell.swift */,
+				B3A022EC22999AE400A3A2C6 /* PostsTableViewCell.xib */,
+				B318E29B2292E2EE00F64023 /* UsersTableViewCell.swift */,
+				B346C7362298DDE5002ACE07 /* UsersTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B338D1DB22A02B83000B1F4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B338D1DE22A02E3C000B1F4D /* Cache */,
+				B3861008229AC1A8005A85FF /* WSDateFormatter.swift */,
+				B386100A229AC1A8005A85FF /* CommentFilter.swift */,
+				B3861006229AC1A8005A85FF /* PostFilter.swift */,
+				B3861009229AC1A8005A85FF /* PostSelection.swift */,
+				B30CA4C32292C9AD00298A2D /* Database.swift */,
+				B3861003229AC057005A85FF /* Tables.swift */,
+				B318E2992292D9E100F64023 /* Badge.swift */,
+				B30CA4C12292C8EB00298A2D /* Comment.swift */,
+				B3861012229AC1FB005A85FF /* CommentEmbedded.swift */,
+				B30CA4BF2292C8AC00298A2D /* Post.swift */,
+				B386100B229AC1A8005A85FF /* PostEmbedded.swift */,
+				B30CA4BD2292C84300298A2D /* User.swift */,
+				B3861007229AC1A8005A85FF /* UserEmbedded.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B338D1DC22A02BE9000B1F4D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B3861001229ABF8B005A85FF /* UITabBarController.swift */,
+				B3A022EE2299A34C00A3A2C6 /* UIView.swift */,
+				B3860FFF229ABF7D005A85FF /* UIWindow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B338D1DD22A02BF6000B1F4D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B3A022DE22981AF000A3A2C6 /* CommentsTableViewController.swift */,
+				B36240652296C24F00FF192E /* PostsTableViewController.swift */,
+				B30CA4882291DDCC00298A2D /* UsersTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B338D1DE22A02E3C000B1F4D /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				B3861014229AC35B005A85FF /* Cache.ImageType.swift */,
+				B3861015229AC35B005A85FF /* Cache.Key.swift */,
+				B3861016229AC35B005A85FF /* Cache.Method.swift */,
+				B3A022E02298243800A3A2C6 /* Cache.swift */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,7 +409,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B301EF312291F4C0000CEFB4 /* schema.json in Resources */,
 				B30CA4912291DDCF00298A2D /* LaunchScreen.storyboard in Resources */,
 				B301EF2F2291ED4D000CEFB4 /* db.json in Resources */,
 				B3860FFC229AB0A1005A85FF /* CommentsTableViewCell.xib in Resources */,
