@@ -1,6 +1,6 @@
 [![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/gitpitch/in-60-seconds/master?grs=github)
 
-# GitPitch In 60 Seconds
+# workshop-2019 In 60 Seconds
 
 To experience the simplicity and power of the GitPitch markdown
 presentation service, follow along with this short tutorial.
@@ -323,3 +323,4 @@ tool for Linux, OSX, and Windows 10 [Pro + Enterprise].
 
 Excited? We hope so. Time now to jump straight back into the interactive GitPitch
 feature guides [here](https://gitpitch.com/docs/getting-started/tutorial).
+=======
